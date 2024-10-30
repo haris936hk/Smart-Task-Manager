@@ -8,7 +8,15 @@
 </head>
 <body>
     <div class="Full">
-        <div class="bar"></div>
+        <div class="bar">
+            <img class="logo" src="Logo.png" alt="Image not found!">
+
+            <div class="inbar">
+                <button id = "btn">Dashboard</button>
+                <button id = "btn">Task</button>
+                <button id = "btn">Calendar</button>
+            </div>
+        </div>
         <div class="side"></div>
         <div class="stats"></div>
     </div>
