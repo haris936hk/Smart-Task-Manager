@@ -48,14 +48,14 @@ body
 }
 .out
 {
-    /* margin-top: 5px; */
+    display: flex;
     width: 30px;
     height: 50px;
+    margin-right: 16px;
 }
 .logout
 {
     width: 140px;
-    height: 70;
     background-color: rgb(255, 255, 255);
     border: 0cap;
     font-weight: bolder;
@@ -63,4 +63,7 @@ body
     font-size: 20px;
     display: flex;
     align-items: center;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
 }
