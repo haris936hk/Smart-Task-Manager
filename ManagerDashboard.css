@@ -10,16 +10,25 @@ body
     border-radius: 30px;
     margin-left: 10px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    
 }
 .logo
 {
     width: 220px;
     height: 220px;
-    background-color: aquamarine;
 }
 .inbar
 {
     background-color: brown;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+#btn
+{
+    
 }

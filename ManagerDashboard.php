@@ -7,8 +7,7 @@
     <title>ManagerDashboard</title>
 </head>
 <body>
-    <div class="Full">
-        <div class="bar">
+     <div class="bar">
             <img class="logo" src="Logo.png" alt="Image not found!">
 
             <div class="inbar">
@@ -16,9 +15,11 @@
                 <button id = "btn">Task</button>
                 <button id = "btn">Calendar</button>
             </div>
-        </div>
+    </div>
+
         <div class="side"></div>
         <div class="stats"></div>
-    </div>
+
+
 </body>
 </html>
