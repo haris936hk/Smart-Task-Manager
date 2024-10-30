@@ -15,6 +15,9 @@
                 <button id = "btn">Task</button>
                 <button id = "btn">Calendar</button>
             </div>
+
+            <hr class="line">
+            <button><img class = "out" src="logout.svg" alt="Icon not found">Sign out</button>
     </div>
 
         <div class="side"></div>

@@ -39,3 +39,9 @@ body
     font-size: medium;
     color: white;
 }
+.line
+{
+    margin-top: 60px;
+    width: 298px;
+    border: 1px solid black;
+}
