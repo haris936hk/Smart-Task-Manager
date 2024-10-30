@@ -23,12 +23,19 @@ body
 }
 .inbar
 {
-    background-color: brown;
+    /* background-color: brown; */
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
 }
 #btn
 {
-    
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: blue;
+    font-weight: bold;
+    font-size: medium;
+    color: white;
 }
