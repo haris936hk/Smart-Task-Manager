@@ -17,7 +17,11 @@
             </div>
 
             <hr class="line">
-            <button><img class = "out" src="logout.svg" alt="Icon not found">Sign out</button>
+            
+            <div class="end">
+                <button class = "logout"><img class = "out" src="logout.svg" alt="Icon not found">Sign out</button>
+            </div>
+            
     </div>
 
         <div class="side"></div>
