@@ -1,0 +1,25 @@
+body
+{
+    background-color: gray;
+}
+.bar
+{
+    width: 300px;
+    height: 580px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+}
+.logo
+{
+    width: 220px;
+    height: 220px;
+    background-color: aquamarine;
+}
+.inbar
+{
+    background-color: brown;
+    display: block;
+}
