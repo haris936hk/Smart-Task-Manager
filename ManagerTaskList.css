@@ -1,0 +1,6 @@
+.table,th,td{
+    background-color: rgb(213, 157, 157);
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}

@@ -1,0 +1,19 @@
+.aside{
+    
+    color: aqua;
+    flex: content;
+    flex-direction: column-reverse;
+    justify-content: center;
+}
+
+.logo{
+    margin-top: -80px;
+    height: 220px;
+    width: 220px;
+}
+
+.nav{
+    display: flex;
+    justify-content: right;
+
+}
