@@ -31,7 +31,7 @@ body
     flex-direction: column;
 }
 
-#btn
+.btn
 {
     width: 200px;
     height: 40px;
@@ -43,6 +43,16 @@ body
     color: white;
     margin-top: 25px;
     cursor: pointer;
+}
+
+.btn
+{
+    transition: box-shadow 0.3s ease-in-out; /* Adjust the transition duration as needed */
+}
+
+.btn:hover 
+{
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.4);
 }
 
 .line
@@ -75,13 +85,10 @@ body
     cursor: pointer;
 }
 
-/* <sideBar Code Complete*/
-
-/* NavBar Code Start from here*/
-
+/* Navbar Code */
 .Navbar
 {
-    width: 970px;
+    width: 950px;
     height: 70px;
     background-color: white;
     border-radius: 20px;
@@ -133,39 +140,27 @@ body
     margin-left: 30px;
 }
 
-#plus_btn
-{
-    width: 150px;
-    height: 50px;
-    border: none;
-    border-radius: 15px;
-    background-color: blue;
-    color: white;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    display: inline-flex;
-    align-items: center;
-     margin-left: 330px;
-}
-
-#plus_icon
-{
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    filter: invert(1.7);
-}
-
 #profile_btn
 {
     width: 50px;
     height: 50px;
     cursor: pointer;
-    margin-left: 30px;
+    margin-left:  500px;
     outline: none;
     background-color: rgb(255, 255, 255);
     border: none;
+    border-radius: 100px;
+    padding: 0px;
+}
+
+#profile_btn
+{
+    transition: box-shadow 0.3s ease-in-out; /* Adjust the transition duration as needed */
+}
+
+#profile_btn:hover 
+{
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.2);
 }
 #profile_icon
 {
@@ -174,10 +169,8 @@ body
 
 }
 
-/* Navbar code Complete */
-
-#stats
-{
+/* Tasks and Table Code */
+#Tasks {
     display: inline-flex;
     position: absolute;
     width: 970px;
@@ -189,71 +182,114 @@ body
     margin-top: 110px;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.4);
+}
+
+table 
+{
+    font-family: Arial, sans-serif;
+    border-spacing: 0;
+    width: 100%;
+    border-radius: 25px;
+    height: 600px;
+}
+
+table tr:nth-child(2) td:last-child 
+{
+    border-top-right-radius: 20px;
+}
+
+table tr:first-child  td:first-child
+{
+    border-top-right-radius: 20px;
+}
+
+table, th, td 
+{
+    border: 2px solid black;
+    /* padding: 9.5px; */
+    text-align: center;
     
 }
 
-#tsk_sts
+.Notes-button, .Member-button 
 {
-    font-size: 60px;
-    margin-top: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.t_detail
-{
-    width: 950px;
-    height: 300px;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* margin-top: 30px; */
-    align-items: center;
-}
-
-.t_count
-{
-    width: 900px;
-    height: 70px;
-    background-color: #d3d3d3;
-    border-radius: 20px;
-    display: inline-flex;
-    align-items: center;
-    padding-left: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: larger;
-}
-
-#total_box
-{
-    width: 100px;
-    height: 50px;
-    background-color: #fffefe;
+    background-color: blue;
+    color: white;
     border: none;
     border-radius: 20px;
-    margin-left: 615px;
-    color: blue;
+    font-size: 12px;
+    width: 90px;
+    cursor: pointer;
 }
 
-#pending_box
+.Notes-button
 {
-    width: 100px;
-    height: 50px;
-    background-color: #fffefe;
-    border: none;
-    border-radius: 20px;
-    margin-left: 568px;
-    color: blue;
+    transition: box-shadow 0.3s ease-in-out; /* Adjust the transition duration as needed */
 }
 
-#complete_box
+.Notes-button :hover 
 {
-    width: 100px;
-    height: 50px;
-    background-color: #fffefe;
-    border: none;
-    border-radius: 20px;
-    margin-left: 550px;
-    color: blue;
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.4);
 }
 
-/* Stats Box Complete */
+/* Popup Styles */
+.popup 
+{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width:100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 255, 0.4);
+    width: 400px;
+    text-align: center;
+}
+
+.close 
+{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.deadline-input
+{
+    padding: 0px;
+    width: 80px;
+    margin: 0px;
+}
+
+.deadline-input::placeholder {
+    color: gray;
+    opacity: 0.8; /* Adjust opacity if needed */
+    margin: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.deadline-input {
+    border: none;
+    background: none;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
