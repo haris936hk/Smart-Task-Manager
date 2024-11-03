@@ -1,0 +1,295 @@
+body
+{
+    background-color: rgb(190, 190, 190);
+}
+
+.bar
+{
+    width: 300px;
+    height: 580px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+    
+}
+
+.logo
+{
+    width: 220px;
+    height: 200px;
+}
+
+.inbar
+{
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.btn
+{
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: blue;
+    font-weight: bold;
+    font-size: medium;
+    color: white;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.btn
+{
+    transition: box-shadow 0.3s ease-in-out; /* Adjust the transition duration as needed */
+}
+
+.btn:hover 
+{
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.4);
+}
+
+.line
+{
+    margin-top: 100px;
+    width: 298px;
+    border: 1px solid black;
+}
+
+.out
+{
+    display: inline-flex;
+    width: 30px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logout
+{
+    width: 120px;
+    background-color: rgb(255, 255, 255);
+    border: 0cap;
+    font-weight: bolder;
+    border-radius: 20px;
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+/* Navbar Code */
+.Navbar
+{
+    width: 950px;
+    height: 70px;
+    background-color: white;
+    border-radius: 20px;
+    display: inline-flex;
+    position: absolute;
+    margin-left: 30px;
+    margin-top: 10px;
+    padding-inline-start: 20px;
+    align-items: center;
+
+}
+
+.search-container 
+{
+    display: flex;
+    align-items: center;
+    background-color: #d3d3d3;
+    border-radius: 50px;
+    padding: 5px 10px;
+    width: 350px;
+    height: 40px;
+}
+
+.search-container input[type="text"] {
+    border: none; 
+    background: none;
+    font-size: 18px;
+    outline: none;
+    width: 250px;
+    color: #000;
+}
+
+.search-container input[type="text"]::placeholder {
+    opacity: 0.8;
+}
+
+.search-icon-btn
+{
+    background-color: #d3d3d3;
+    border: none;
+    border-left: 2px solid black;
+}
+
+.search_icon
+{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+#profile_btn
+{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    margin-left:  500px;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 100px;
+    padding: 0px;
+}
+
+#profile_btn
+{
+    transition: box-shadow 0.3s ease-in-out; /* Adjust the transition duration as needed */
+}
+
+#profile_btn:hover 
+{
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.2);
+}
+#profile_icon
+{
+    width: 50px;
+    height: 50px;
+
+}
+
+/* Tasks and Table Code */
+#Tasks {
+    display: inline-flex;
+    position: absolute;
+    width: 970px;
+    height: 480px;
+    background-color: white;
+    border-radius: 30px;
+    margin-left: 30px;
+    justify-content: center;
+    margin-top: 110px;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.4);
+}
+
+table 
+{
+    font-family: Arial, sans-serif;
+    border-spacing: 0;
+    width: 100%;
+    border-radius: 25px;
+    height: 600px;
+}
+
+table tr:nth-child(2) td:last-child 
+{
+    border-top-right-radius: 20px;
+}
+
+table tr:first-child  td:first-child
+{
+    border-top-right-radius: 20px;
+}
+
+table, th, td 
+{
+    border: 2px solid black;
+    /* padding: 9.5px; */
+    text-align: center;
+    
+}
+
+.Notes-button, .Member-button 
+{
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    width: 90px;
+    cursor: pointer;
+}
+
+.Notes-button
+{
+    transition: box-shadow 0.3s ease-in-out; /* Adjust the transition duration as needed */
+}
+
+.Notes-button :hover 
+{
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.4);
+}
+
+/* Popup Styles */
+.popup 
+{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width:100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 255, 0.4);
+    width: 400px;
+    text-align: center;
+}
+
+.close 
+{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.deadline-input
+{
+    padding: 0px;
+    width: 80px;
+    margin: 0px;
+}
+
+.deadline-input::placeholder {
+    color: gray;
+    opacity: 0.8; /* Adjust opacity if needed */
+    margin: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.deadline-input {
+    border: none;
+    background: none;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+

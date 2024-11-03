@@ -121,7 +121,8 @@ body
 .search-icon-btn
 {
     background-color: #d3d3d3;
-    border: #d3d3d3;
+    border: none;
+    border-left: 2px solid black;
 }
 
 .search_icon
