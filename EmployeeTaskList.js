@@ -8,8 +8,3 @@ function togglePopup(title) {
         popup.style.display = 'none';
     }
 }
-
-const shd = document.getElementById('btn')
-{
-    on
-}

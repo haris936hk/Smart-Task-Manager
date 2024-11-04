@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="EmployeeTasklist.css">
-    <!-- <script src="EmployeeTaskList.js"></script> -->
     <title>EmployeeTaskList</title>
 </head>
 <body>
@@ -36,13 +35,13 @@
         <table>
             <tr>
                 <th id="title" colspan="8">
-                    <h2>Task List</h2>
+                    <h2 id="titleHeading">Task List</h2>
                 </th>
             </tr>
             <tr>
                 <th>No</th>
                 <th>Name</th>
-                <th>Category</th>
+                <th>Priority</th>
                 <th>Status</th>
                 <th>Deadline</th>
                 <th>Team Members</th>
@@ -51,72 +50,72 @@
             <tr>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td></td>
-                <td></td>
                 <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td></td>
-                <td></td>
                 <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td></td>
-                <td></td>
                 <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td></td>
-                <td></td>
                 <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td></td>
-                <td></td>
                 <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td></td>
-                <td></td>
                 <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td></td>
-                <td></td>
                 <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td></td>
-                <td></td>
                 <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
@@ -128,21 +127,17 @@
         <div class="popup-content">
             <span class="close" onclick="togglePopup()">&times;</span>
             <h3 id="popup-title">Popup Title</h3>
-            <p>Content from database or other details will go here.</p>
+            <ul id="popup-list">
+                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input" disabled></li>
+                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input" disabled></li>
+                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input" disabled></li>
+                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input" disabled></li>
+                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input" disabled></li>
+            </ul>
         </div>
     </div>
 
-    <script>
-        function togglePopup(title) {
-            const popup = document.getElementById('popup');
-            const popupTitle = document.getElementById('popup-title');
-            if (title) {
-                popupTitle.textContent = title;
-                popup.style.display = 'block';
-            } else {
-                popup.style.display = 'none';
-            }
-        }
-    </script>
+
+<script src="EmployeeTaskList.js"></script>
 </body>
 </html>
