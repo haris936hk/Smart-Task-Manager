@@ -1,10 +1,13 @@
-function togglePopup(title) {
+function togglePopup(title)
+{
     const popup = document.getElementById('popup');
     const popupTitle = document.getElementById('popup-title');
-    if (title) {
+    if (title) 
+    {
         popupTitle.textContent = title;
         popup.style.display = 'block';
-    } else {
+    } else 
+    {
         popup.style.display = 'none';
     }
 }
