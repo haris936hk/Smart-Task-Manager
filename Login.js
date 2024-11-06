@@ -1,4 +1,5 @@
-function myFunction() {
+function myFunction() 
+{
     var x = document.getElementById("Passinputbox");
     if (x.type === "password") 
     {
@@ -7,4 +8,5 @@ function myFunction() {
     {
       x.type = "password";
     }
-  }
+    x.focus();
+}
