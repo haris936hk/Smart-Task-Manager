@@ -6,109 +6,108 @@
     <link rel="stylesheet" href="ManagerDashboard.css">
     <style>
         /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.5);
-            /* Added flex properties for centering */
-            display: none;
-            justify-content: center;
-            align-items: center;
-            overflow-y: auto; /* Enable scrolling if needed */
-            margin-left: ;
-        }
+.modal {
+    display: flex; /* Display flex for centering */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto; /* Allow vertical scrolling if needed */
+}
 
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            /* Remove margin-top and use max-height */
-            max-height: 90vh;
-            overflow-y: auto;
-        }
+.modal-content {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 30%;
+    max-height: 80vh; /* Limit height to prevent overflow */
+    overflow-y: auto; /* Enable scrolling within the modal if needed */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for a polished look */
+}
 
-        /* Add smooth scrollbar for the modal content */
-        .modal-content::-webkit-scrollbar {
-            width: 8px;
-        }
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
 
-        .modal-content::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
 
-        .modal-content::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
-        }
+.modal-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
 
-        .close {
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.modal-content h2{
+    text-align: center;
+    margin: 5px;
+}
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            font-family: Arial, sans-serif;
-        }
+.form-group {
+    margin-bottom: 15px;
+}
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #d3d3d3;
-            border-radius: 10px;
-            font-size: 16px;
-        }
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
 
-        .form-group textarea {
-            height: 100px;
-            resize: vertical;
-        }
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+    font-size: 16px;
+}
 
-        .submit-btn {
-            background-color: blue;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 10px;
-        }
+.form-group textarea {
+    height: 20px;
+    resize: vertical;
+}
 
-        .submit-btn:hover {
-            opacity: 0.9;
-        }
+.submit-btn {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 10px;
+}
 
-        /* Add spacing for the form title */
-        .modal-title {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            margin-bottom: 20px;
-            padding-top: 10px;
-        }
+.submit-btn:hover {
+    opacity: 0.9;
+}
+
+.modal-title {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+    padding-top: 10px;
+}
     </style>
     <title>ManagerDashboard</title>
 </head>
