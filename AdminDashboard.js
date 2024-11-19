@@ -1,4 +1,11 @@
-
+function showForm()
+{
+    var selectRol = document.getElementById("SelectRol");
+    var container = document.getElementById("container");
+    var SignUp = document.getElementById("SignUp");
+    selectRol.style.display = "none";
+    container.style.display = "flex";
+}
 
 function myFunction() 
 {
@@ -94,10 +101,33 @@ function validatePassword() {
     }
 }
 
+function redirectToCreatAccount()
+{
+    var selectRol = document.getElementById("SelectRol");
+    selectRol.style.display = "none";
+    var selectRol = document.getElementById("container");
+    container.style.display = "none";
+    var SignUp = document.getElementById("SignUp");
+    SignUp.style.display = "flex";
+}
 
+function redirectToUpdateAccount()
+{
+    var selectRol = document.getElementById("SelectRol");
+    selectRol.style.display = "none";
+    var selectRol = document.getElementById("container");
+    selectRol.style.display = "none";
+    var selectRol = document.getElementById("UpdateAccount");
+    selectRol.style.display = "flex";
+}
 
+function redirectToDeleteAccount()
+{
+    //code
+}
 
-
-
-
+function redirectToResetPassword()
+{
+    //code
+}
 

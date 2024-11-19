@@ -11,7 +11,7 @@
 
         <img id= "img" src="Logo.png" alt="Image not found!">
 
-        <form action="" method="POST"> <br>
+        <form action="" method="POST" onsubmit="return ValidationFun(event)"> <br>
             <label for="inputbox" class="lbl">Enter User Name</label> <br>
             <input type="text" name="nm" id="inputbox" placeholder="Username"> <br><br>
             <label for="Passinputbox" class="lbl">Enter Password</label> <br>
@@ -19,7 +19,7 @@
             <input id="check" type="checkbox" onclick="myFunction()">
             <label for="check" id="Showpassword">Show Password</label>
 
-            <button name= "btn" id = "btn"> Login </button>
+            <button name= "btn" id = "btn" > Login </button>
         </form>
     </div>
 
