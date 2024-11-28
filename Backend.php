@@ -18,7 +18,7 @@ class User {
     private function loadUserDetails(): void {
         $stmt = $this->db->prepare("SELECT * FROM Users WHERE userID = :userID");
         $stmt->execute(['userID' => $this->userID]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(PDO::FETH_ASSOC);
 
         if ($user) {
             $this->username = $user['username'];
@@ -432,7 +432,7 @@ class Task {
                     'deadline' => $this->deadline->format('Y-m-d H:i:s'),
                     'category' => $this->category,
                     'status' => $this->status,
-                    'created_by' => 1 // Replace with actual creator ID
+                    'created_by' => 1
                 ]);
                 $this->taskID = $this->db->lastInsertId();
             } else {
