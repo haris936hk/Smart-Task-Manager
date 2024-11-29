@@ -11,33 +11,29 @@
 <body>
 
     <div id="container">
-    <img id="SignUpimg" src="Logo.png" alt="Image not found!">
-    
-        <div id="SignUp">
-            
+        <img id="UpdateAccountimg" src="Logo.png" alt="Image not found!">
+
+        <div id="UpdateAccount">
+
             <form action="" method="POST" onsubmit="return ValidationFun(event)"> <br>
 
-                <label for="inputbox" class="lbl"> Username </label> <br>
-                <input type="text" name="id" id="inputbox" placeholder="Username" disabled> <br><br>
+                <label for="inputbox" id="searchlbl"> Search User </label> <br>
+                <div class="search-container">
+                    <form class="search-container" action="/search" method="get">
+                        <input type="text" placeholder="Search">
+                        <button type="submit" class="search-icon-btn"><img class="search_icon" src="Search_icon.svg"
+                                alt="Icon not fount!"></button>
+                    </form>
+                </div> <br> <br>
 
-                <label for="inputbox" class="lbl">Full Name </label> <br>
-                <input type="text" name="nm" id="nminputbox" placeholder="Name" pattern="[A-Za-z]+"
-                    title="Only alphabets are allowed" disabled> <br><br>
+                <label for="inputbox" id="nmlbl">Full Name for Update</label>
+                <input type="text" name="nm" id="nminputbox" placeholder="Name" disabled> <br><br>
 
-                <label for="inputbox" class="lbl">Email Address </label> <br>
-                <input type="email" name="cnic" id="mailinputbox" placeholder="abc@gmail.com"
-                    title="Enter a valid email address" disabled> <br><br>
+                <label for="inputbox" id="maillbl">Email Address for Update</label>
+                <input type="email" name="cnic" id="mailinputbox" placeholder="abc@gmail.com" disabled> <br>
 
-                <button name="DeleteButton" id="btn" type="submit" onclick="MyFunction(event)"> Delete Account </button>
+                <button name="UpdateAccountbtn" id="btn" type="submit"> Delete Account </button>
             </form>
-        </div>
-    </div>
-
-    <div id="alert">
-        <div id ="popup">
-            <p>Do You Want to Delete Account?</p>
-            <button class = "DeleteButton">Yes</button>
-            <button class = "DeleteButton">No</button>
         </div>
     </div>
 

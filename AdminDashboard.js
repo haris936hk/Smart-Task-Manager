@@ -101,33 +101,23 @@ function validatePassword() {
     }
 }
 
-function redirectToCreatAccount()
+function redirectToCreateAccount() 
 {
-    var selectRol = document.getElementById("SelectRol");
-    selectRol.style.display = "none";
-    var selectRol = document.getElementById("container");
-    container.style.display = "none";
-    var SignUp = document.getElementById("SignUp");
-    SignUp.style.display = "flex";
+    window.location.href = "SignUp.php";
 }
 
 function redirectToUpdateAccount()
 {
-    var selectRol = document.getElementById("SelectRol");
-    selectRol.style.display = "none";
-    var selectRol = document.getElementById("container");
-    selectRol.style.display = "none";
-    var selectRol = document.getElementById("UpdateAccount");
-    selectRol.style.display = "flex";
+    window.location.href = "UpdateAccount.php";
 }
 
 function redirectToDeleteAccount()
 {
-    //code
+    window.location.href = "DeleteAccount.php";
 }
 
 function redirectToResetPassword()
 {
-    //code
+    window.location.href = "ResetPassword.php";
 }
 

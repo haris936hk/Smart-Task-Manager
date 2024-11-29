@@ -28,11 +28,11 @@
 
                 <label for="inputbox" id="nmlbl">Enter Full Name for Update</label>
                 <input type="text" name="nm" id="nminputbox" placeholder="Name" pattern="[A-Za-z]+"
-                    title="Only alphabets are allowed"> <br><br>
+                    title="Only alphabets are allowed" required> <br><br>
 
                 <label for="inputbox" id="maillbl">Enter Email Address for Update</label>
                 <input type="email" name="cnic" id="mailinputbox" placeholder="abc@gmail.com"
-                    title="Enter a valid email address"> <br>
+                    title="Enter a valid email address" required> <br>
 
                 <button name="UpdateAccountbtn" id="btn" type="submit"> Update Account </button>
             </form>

@@ -13,7 +13,10 @@ body
     margin-top: 10px;
     display: inline-flex;
     flex-direction: column;
-    align-items: center;   
+    align-items: center;
+    
+
+    
 }
 
 .logo
@@ -98,9 +101,7 @@ body
 
 }
 
-/* Navbar code Complete */
-
-#stats
+#Tasks
 {
     display: inline-flex;
     position: absolute;
@@ -112,74 +113,62 @@ body
     justify-content: center;
     margin-top: 100px;
     flex-direction: column;
-    align-items: center;
-    
+    align-items: center;   
 }
 
-#tsk_sts
+#TaskEntery
 {
-    font-size: 60px;
-    margin-top: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.t_detail
-{
-    width: 950px;
-    height: 300px;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    /* margin-top: 30px; */
+    justify-content: center;
     align-items: center;
+    width: 970px;
+    height: 400px;
+    border-radius: 30px;
 }
 
-.t_count
+#TaskHeading
 {
-    width: 900px;
-    height: 70px;
-    background-color: #d3d3d3;
-    border-radius: 20px;
-    display: inline-flex;
-    align-items: center;
-    padding-left: 10px;
+    margin-left: 400px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: larger;
+    font-size: 25px;
 }
 
-#total_box
+label
 {
-    width: 100px;
-    height: 50px;
-    background-color: #fffefe;
-    border: none;
-    border-radius: 20px;
-    margin-left: 615px;
-    color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-right: 200px;
+    margin-top: 15px;
 }
 
-#pending_box
+.Input
 {
-    width: 100px;
-    height: 50px;
-    background-color: #fffefe;
-    border: none;
-    border-radius: 20px;
-    margin-left: 568px;
-    color: blue;
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid black;
 }
 
-#complete_box
+#submit-btn
 {
-    width: 100px;
-    height: 50px;
-    background-color: #fffefe;
-    border: none;
+    width: 200px;
+    height: 40px;
     border-radius: 20px;
-    margin-left: 550px;
-    color: blue;
+    border: 1px solid black;
+    background-color: blue;
+    font-weight: bold;
+    font-size: medium;
+    color: white;
+    margin-top: 25px;
+    cursor: pointer;
 }
 
-
-
-
+#submit-btn
+{
+    transition: box-shadow 0.2s ease-in-out; /* Adjust the transition duration as needed */
+}
+#submit-btn:hover 
+{
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.4);
+}

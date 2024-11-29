@@ -19,10 +19,10 @@
 
     <div id="container">
         <div id="buttons">
-            <button name="Empbtn" class="ActionButton" onclick="redirectToCreatAccount()"> Creat Account </button>
-            <button name="Empbtn" class="ActionButton" onclick="redirectToUpdateAccount()"> Update Account </button>
-            <button name="Empbtn" class="ActionButton" onclick="redirectToDeleteAccount()"> Delete Account </button>
-            <button name="Empbtn" class="ActionButton" onclick="redirectToResetPassword()"> Reset Password </button>
+        <button name="Createbtn" class="ActionButton" onclick="redirectToCreateAccount()">Create Account</button>
+            <button name="Updatebtn" class="ActionButton" onclick="redirectToUpdateAccount()"> Update Account </button>
+            <button name="Deletebtn" class="ActionButton" onclick="redirectToDeleteAccount()"> Delete Account </button>
+            <button name="Resetbtn" class="ActionButton" onclick="redirectToResetPassword()"> Reset Password </button>
         </div>
     </div>
     <script src="AdminDashboard.js"></script>
