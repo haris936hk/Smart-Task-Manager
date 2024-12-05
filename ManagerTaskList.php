@@ -40,42 +40,7 @@
                 <th>Notes</th>
             </tr>
 
-            <?php
-            // Database connection
-            $con = mysqli_connect("localhost", "root", "", "smarttaskmanager");
 
-            // Check connection
-            if (!$con) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
-
-            // Fetch tasks from the database
-            $sql = "SELECT * FROM Tasks";
-            $result = mysqli_query($con, $sql);
-
-            // Check if there are tasks
-            if (mysqli_num_rows($result) > 0) {
-                $task_no = 1; // Initialize task number
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>";
-                    echo "<td>" . $task_no++ . "</td>";
-                    echo "<td>" . htmlspecialchars($row['title']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['priority']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['status']) . "</td>";
-                    echo "<td>" . htmlspecialchars(date("d/m/Y", strtotime($row['deadline']))) . "</td>";
-
-                    // Dummy data for Team Members and Notes buttons
-                    echo '<td><button class="Member-button" onclick="togglePopup(\'Members\')">Members</button></td>';
-                    echo '<td><button class="Notes-button" onclick="togglePopup(\'Notes\')">Notes</button></td>';
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='7'>No tasks found</td></tr>";
-            }
-
-            // Close the database connection
-            mysqli_close($con);
-            ?>
         </table>
     </div>
 
