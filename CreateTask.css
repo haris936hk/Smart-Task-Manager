@@ -1,10 +1,8 @@
-body
-{
+body {
     background-color: rgb(190, 190, 190);
 }
 
-.bar
-{
+.bar {
     width: 300px;
     height: 570px;
     background-color: rgb(255, 255, 255);
@@ -14,26 +12,20 @@ body
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    
-
-    
 }
 
-.logo
-{
+.logo {
     width: 220px;
     height: 200px;
 }
 
-.inbar
-{
+.inbar {
     display: inline-flex;
     flex-direction: column;
     margin-top: 40px;
 }
 
-.btn
-{
+.btn {
     width: 200px;
     height: 40px;
     border-radius: 20px;
@@ -44,23 +36,15 @@ body
     color: white;
     margin-top: 25px;
     cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
 }
 
-.btn
-{
-    transition: box-shadow 0.2s ease-in-out; /* Adjust the transition duration as needed */
-}
-.btn:hover 
-{
+.btn:hover {
     box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.4);
 }
 
-/* <sideBar Code Complete*/
-
-/* NavBar Code Start from here*/
-
-.Navbar
-{
+/* NavBar Code */
+.Navbar {
     width: 950px;
     height: 70px;
     background-color: white;
@@ -75,9 +59,9 @@ body
 }
 
 #heading {
-    font-size: 30px; /* Adjust font size for better visibility */
+    font-size: 30px;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 0; /* Reset default margin */
+    margin: 0;
     margin-left: 330px;
 }
 
@@ -88,21 +72,18 @@ body
     outline: none;
     background-color: rgb(255, 255, 255);
     border: none;
-    display: flex; /* Flexbox for icon alignment */
+    display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 30px;
 }
 
-#profile_icon
-{
+#profile_icon {
     width: 50px;
     height: 50px;
-
 }
 
-#Tasks
-{
+#Tasks {
     display: inline-flex;
     position: absolute;
     width: 970px;
@@ -113,11 +94,10 @@ body
     justify-content: center;
     margin-top: 100px;
     flex-direction: column;
-    align-items: center;   
+    align-items: center;
 }
 
-#TaskEntery
-{
+#TaskEntery {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -127,31 +107,76 @@ body
     border-radius: 30px;
 }
 
-#TaskHeading
-{
+#TaskHeading {
     margin-left: 400px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
 }
 
-label
-{
+label {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     margin-right: 200px;
     margin-top: 15px;
 }
 
-.Input
-{
-    width: 300px;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid black;
+/* Style for the select element */
+.Input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
 }
 
-#submit-btn
-{
+/* Style for the multiselect dropdown */
+.Input[multiple] {
+    height: 150px; /* Adjust height for better visibility */
+    padding: 5px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+/* Hover effect for select dropdown */
+.Input:hover {
+    border-color: #4CAF50;
+}
+
+/* Focus effect for select dropdown */
+.Input:focus {
+    border-color: #007BFF;
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Style for the option elements */
+.Input option {
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Style for the selected options */
+.Input option:checked {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* Optional: Style for the dropdown list (when dropdown is open) */
+.Input::-webkit-scrollbar {
+    width: 5px;
+}
+
+.Input::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+
+.Input::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+#submit-btn {
     width: 200px;
     height: 40px;
     border-radius: 20px;
@@ -162,13 +187,9 @@ label
     color: white;
     margin-top: 25px;
     cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
 }
 
-#submit-btn
-{
-    transition: box-shadow 0.2s ease-in-out; /* Adjust the transition duration as needed */
-}
-#submit-btn:hover 
-{
+#submit-btn:hover {
     box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.4);
 }
