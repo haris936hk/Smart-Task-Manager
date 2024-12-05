@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="EmployeeTasklist.css">
     <title>EmployeeTaskList</title>
 </head>
+
 <body>
-     <div class="bar">
-            <img class="logo" src="Logo.png" alt="Image not found!">
-            <div class="inbar">
-                <button class="btn" type="button">Dashboard</button>
-                <button class="btn" type="button">Task</button>
-                <button class="btn" type="button">Calendar</button>
-            </div>
-            <hr class="line">
-            <button class="logout"><img class="out" src="logout.svg" alt="Icon not found">Sign out</button>
+    <div class="bar">
+        <img class="logo" src="Logo.png" alt="Image not found!">
+        <div class="inbar">
+            <button class="btn" type="button" onclick="redirectToDashboard()">Dashboard</button>
+            <button class="btn" type="button" onclick="redirectToTaskList()">Task List</button>
+        </div>
     </div>
 
     <div class="Navbar">
-        <div class="search-container">
-            <form class="search-container" action="/search" method="get">
-                <input type="text" placeholder="Search">
-                <button type="submit" class="search-icon-btn"><img class="search_icon" src="Search_icon.svg" alt="Icon not found!"></button>
+        <h1 id="heading">Smart Task Manager</h1>
+        <button type="button" id="profile_btn"><img id="profile_icon" src="Profile_icon.svg"
+                alt="Icon not found!"></button>
+    </div>
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Task</h2>
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskTitle">Task Title</label>
+                    <input type="text" id="taskTitle" name="taskTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription" name="taskDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="assignee">Assign To</label>
+                    <select id="assignee" name="assignee" required>
+                        <option value="">Select Assignee</option>
+                        <option value="employee1">Employee 1</option>
+                        <option value="employee2">Employee 2</option>
+                        <option value="employee3">Employee 3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dueDate">Due Date</label>
+                    <input type="date" id="dueDate" name="dueDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="priority">Priority</label>
+                    <select id="priority" name="priority" required>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Create Task</button>
             </form>
         </div>
-
-        <div id="btn_box">
-            <button type="button" id="profile_btn"> <img id="profile_icon" src="Profile_icon.svg" alt="Icon not found!"></button>
-        </div>
     </div>
+
 
     <div id="Tasks">
         <table>
@@ -53,8 +84,28 @@
                 <td></td>
                 <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
-                <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
+                <td>
+                    <button class="Member-button" onclick="togglePopupe('membersPopup')">Members</button>
+                    <div class="overlay" id="overlay-members" onclick="togglePopupe('membersPopup')"></div>
+                    <div class="popup" id="membersPopup">
+                        <h3>Members</h3>
+                        <ul class="scrollable-list">
+                            <li>Member-01</li>
+                            <li>Member-02</li>
+                            <li>Member-03</li>
+                            <li>Member-04</li>
+                            <li>Member-05</li>
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    <button class="Notes-button" onclick="togglePopup('notesPopup')">Notes</button>
+                    <div class="overlay" id="overlay-notes" onclick="togglePopup('notesPopup')"></div>
+                    <div class="popup" id="notesPopup">
+                        <h3>Add Note</h3>
+                        <textarea placeholder="Add Note here"></textarea>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td></td>
@@ -128,15 +179,21 @@
             <span class="close" onclick="togglePopup()">&times;</span>
             <h3 id="popup-title">Popup Title</h3>
             <ul id="popup-list">
-                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input" disabled></li>
-                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input" disabled></li>
-                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input" disabled></li>
-                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input" disabled></li>
-                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input" disabled></li>
+                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input"
+                        disabled></li>
+                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input"
+                        disabled></li>
+                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input"
+                        disabled></li>
+                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input"
+                        disabled></li>
+                <li class="popup-list-item"><input type="text" placeholder="Member Name" class="deadline-input"
+                        disabled></li>
             </ul>
         </div>
     </div>
 
-<script src="EmployeeTaskList.js"></script>
+    <script src="EmployeeTaskList.js"></script>
 </body>
+
 </html>

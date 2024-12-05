@@ -9,17 +9,9 @@
 </head>
 
 <body>
-
-    <div id="SelectRol">
-        <img id="Rolimg" src="Logo.png" alt="Image not found!">
-
-        <button name="Mngbtn" class="Rolbtn" onclick="showForm()"> Manager </button>
-        <button name="Empbtn" class="Rolbtn" onclick="showForm()"> Employee Account </button>
-    </div>
-
     <div id="container">
         <div id="buttons">
-        <button name="Createbtn" class="ActionButton" onclick="redirectToCreateAccount()">Create Account</button>
+            <button name="Createbtn" class="ActionButton" onclick="redirectToCreateAccount()">Create Account</button>
             <button name="Updatebtn" class="ActionButton" onclick="redirectToUpdateAccount()"> Update Account </button>
             <button name="Deletebtn" class="ActionButton" onclick="redirectToDeleteAccount()"> Delete Account </button>
             <button name="Resetbtn" class="ActionButton" onclick="redirectToResetPassword()"> Reset Password </button>
@@ -29,3 +21,31 @@
 </body>
 
 </html>
+
+
+<!-- php Code started from here -->
+
+<?php
+
+    $con = mysqli_connect("localhost", "root", "", "smarttaskmanager");
+
+    if (!$con) 
+    {
+        echo "<script> alert('Connection Failed') </script>";
+    }
+    else 
+    {
+        // Check which button was pressed
+        if (isset($_POST['Mngbtn'])) {
+            $userType = 'Manager';
+        } elseif (isset($_POST['Empbtn'])) {
+            $userType = 'Employee';
+        } else {
+            $userType = null; // Handle invalid input
+        }
+    }
+    if($userType)
+    {
+        
+    }
+?>

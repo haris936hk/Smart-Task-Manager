@@ -1,13 +1,20 @@
-function togglePopup(title)
+
+function redirectToDashboard()
 {
-    const popup = document.getElementById('popup');
-    const popupTitle = document.getElementById('popup-title');
-    if (title) 
-    {
-        popupTitle.textContent = title;
-        popup.style.display = 'block';
-    } else 
-    {
-        popup.style.display = 'none';
-    }
+    window.location.href = "EmployeeDashboard.php";
 }
+
+function redirectToTaskList()
+{
+    window.location.href = "EmployeeTaskList.php";
+}
+
+
+function togglePopup() {
+    const popup = document.getElementById('popup');
+    const overlay = document.getElementById('overlay');
+    const isHidden = popup.style.display === 'none' || !popup.style.display;
+    popup.style.display = isHidden ? 'block' : 'none';
+    overlay.style.display = isHidden ? 'block' : 'none';
+}
+

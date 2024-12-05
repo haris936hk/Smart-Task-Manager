@@ -34,55 +34,6 @@ function myFunction()
     }
 }
 
-function ValidationFun(event) 
-{
-    // Get form elements
-    var name = document.getElementById("nminputbox");
-    var mail = document.getElementById("mailinputbox");
-    var pass = document.getElementById("Passinputbox");
-    var cnfpass = document.getElementById("cnfrmPassinputbox");
-
-    // Reset borders in case they were previously set to red
-    name.style.border = "";
-    mail.style.border = "";
-    pass.style.border = "";
-    cnfpass.style.border = "";
-
-    // Check for empty fields and set the border to red, focus on the first empty field
-    if (name.value === "") 
-    {
-        name.style.border = "2px solid red";
-        name.focus(); // Set focus to the first empty field
-        name.style.boxShadow = "0px 0px 2px 2px rgba(255, 0, 0, 0.4)";
-        event.preventDefault(); // Prevent form submission
-        return false; // Prevent form submission
-    } 
-    else if (mail.value === "") 
-    {
-        mail.style.border = "2px solid red";
-        mail.focus(); // Set focus to the first empty field
-        mail.style.boxShadow = "0px 0px 2px 2px rgba(255, 0, 0, 0.4)";
-        event.preventDefault(); // Prevent form submission
-        return false; // Prevent form submission
-    } else if (pass.value === "") 
-    {
-        pass.style.border = "2px solid red";
-        pass.focus(); // Set focus to the first empty field
-        pass.style.boxShadow = "0px 0px 2px 2px rgba(255, 0, 0, 0.4)";
-        event.preventDefault(); // Prevent form submission
-        return false; // Prevent form submission
-    } else if (cnfpass.value === "") 
-    {
-        cnfpass.style.border = "2px solid red";
-        cnfpass.focus(); // Set focus to the first empty field
-        cnfpass.style.boxShadow = "0px 0px 2px 2px rgba(255, 0, 0, 0.4)";
-        event.preventDefault(); // Prevent form submission
-        return false; // Prevent form submission
-    }
-    // If everything is filled, allow the form to submit
-    return true; // Allow form submission
-}
-
 function validatePassword() {
     var pass = document.getElementById("Passinputbox").value;
     var cnfpass = document.getElementById("cnfrmPassinputbox");
@@ -94,7 +45,42 @@ function validatePassword() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all input fields except radio buttons
+    const inputFields = document.querySelectorAll('input:not([type="radio"])');
+    const usernameField = document.getElementById('inputbox');
+    const roleInputs = document.querySelectorAll('input[type="radio"]');
 
+    // Initially disable all input fields
+    inputFields.forEach(input => {
+        if (input.type !== 'radio') {
+            input.disabled = true;
+        }
+    });
+
+    // Function to handle role selection
+    function handleRoleSelection() {
+        // Enable all inputs except username
+        inputFields.forEach(input => {
+            if (input.id !== 'inputbox') {
+                input.disabled = false;
+            }
+        });
+
+        // Keep username field disabled
+        usernameField.disabled = true;
+
+        // Generate and set username based on selected role
+        const selectedRole = document.querySelector('input[type="radio"]:checked').nextElementSibling.textContent;
+        const timestamp = Date.now().toString().slice(-4);
+        usernameField.value = `${selectedRole}${timestamp}`;
+    }
+
+    // Add change event listener to radio buttons
+    roleInputs.forEach(radio => {
+        radio.addEventListener('change', handleRoleSelection);
+    });
+});
 
 
 
