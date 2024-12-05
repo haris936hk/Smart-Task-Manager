@@ -1,11 +1,5 @@
 <?php
-// Database connection
-$servername = "localhost"; // Update with your server name
-$username = "root";        // Update with your database username
-$password = "";            // Update with your database password
-$dbname = "smarttaskmanager"; // Update with your database name
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+include('db_connection.php');
 
 // Check connection
 if ($conn->connect_error) {
