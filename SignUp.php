@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Execute the query and check if the insertion was successful
         if ($stmt->execute()) {
-            echo "<script>alert('Account created successfully!'); window.location.href='login.php';</script>";
+            echo "<script>alert('Account created successfully!'); window.location.href='SignUp.php';</script>";
         } else {
             echo "<script>alert('Error creating account. Please try again.');</script>";
         }
