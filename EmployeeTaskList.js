@@ -10,11 +10,20 @@ function redirectToTaskList()
 }
 
 
-function togglePopup() {
-    const popup = document.getElementById('popup');
-    const overlay = document.getElementById('overlay');
-    const isHidden = popup.style.display === 'none' || !popup.style.display;
-    popup.style.display = isHidden ? 'block' : 'none';
-    overlay.style.display = isHidden ? 'block' : 'none';
+function showPopup() {
+    // Fetch text from the database (dummy text for now)
+    const dynamicText = "This is a sample note from the database."; 
+
+    // Display the popup
+    const popup = document.getElementById("popup");
+    popup.style.display = "flex";
+
+    // Set the dynamic text in the textbox
+    document.getElementById("popup-text").value = dynamicText;
+}
+
+function closePopup() {
+    // Hide the popup
+    document.getElementById("popup").style.display = "none";
 }
 

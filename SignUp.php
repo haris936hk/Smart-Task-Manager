@@ -33,7 +33,7 @@
                     title="Only alphabets are allowed" required> <br><br>
 
                 <label for="inputbox" class="lbl">Enter Email Address </label> <br>
-                <input type="email" name="cnic" id="mailinputbox" placeholder="abc@gmail.com"
+                <input type="email" name="email" id="mailinputbox" placeholder="abc@gmail.com"
                     title="Enter a valid email address" required> <br><br>
 
                 <label for="Passinputbox" class="lbl">Enter Password</label> <br>

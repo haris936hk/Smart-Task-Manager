@@ -7,6 +7,10 @@ body {
     background-color: rgb(190, 190, 190);
   }
   
+  #Role
+  {
+    margin: 0px;
+  }
   /* Initially, the container is hidden with opacity and visibility */
   #container {
     width: 800px;
@@ -58,46 +62,41 @@ body {
     margin-bottom: 30px;
   }
 
-  .search-container 
+#insidedive
 {
-    display: flex;
-    align-items: center;
-    border-radius: 10px;
-    padding: 5px 10px;
-    width: 290px;
-    height: 35px;
-    border: 1px solid rgb(190, 190, 190);
+  width: 370px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 }
 
-.search-container input[type="text"] 
-{
-    border: none; 
-    background: none;
-    font-size: 15px;
-    outline: none;
-    width: 250px;
-    color: #000;
-    font-family: Arial, Helvetica, sans-serif;
+/* Style the dropdown list */
+.dropdown-list {
+  position: absolute;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: none; /* Initially hidden */
+  margin-top: 5px;
+  list-style-type: none;
+  padding-left: 0;
 }
 
-.search-container input[type="text"]::placeholder 
-{
-    color: rgba(3, 3, 168, 0.345);
+/* Style individual list items */
+.dropdown-list li {
+  padding: 10px;
+  cursor: pointer;
 }
 
-.search-icon-btn
-{
-    background-color: #ffffff;
-    border: none;
-    border-left: 2px solid black;
-}
-
-.search_icon
-{
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    margin-left: 8px;
+/* Highlight list items when hovered */
+.dropdown-list li:hover {
+  background-color: #f0f0f0;
 }
   
 #btn {

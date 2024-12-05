@@ -14,9 +14,7 @@ body
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    
-
-    
+       
 }
 
 .logo
@@ -80,26 +78,41 @@ body
     margin: 0; /* Reset default margin */
     margin-left: 330px;
 }
-
-#profile_btn {
-    width: 50px;
-    height: 50px;
+#Logout
+{
+    width: 90px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-right: 30px;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
     cursor: pointer;
-    outline: none;
-    background-color: rgb(255, 255, 255);
-    border: none;
-    display: flex; /* Flexbox for icon alignment */
+}
+
+#container{
+    width: 370px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.759);
+    color: rgb(0, 0, 0);
     align-items: center;
     justify-content: center;
-    margin-right: 30px;
-}
-
-#profile_icon
-{
-    width: 50px;
-    height: 50px;
-
-}
+    border-radius: 30px;
+    box-shadow: 0px 0px 15px 5px rgba(190, 190, 190, 0.4);
+  }
+  
+  #container{
+    transition: box-shadow 0.3s ease-in-out; /* Adjust the transition duration as needed */
+  }
+  #container:hover {
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 255, 0.3);
+  }
 
 #Tasks
 {
@@ -129,9 +142,11 @@ body
 
 #TaskHeading
 {
-    margin-left: 400px;
+    /* margin-left: 400px; */
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
+    margin: 0px;
+    
 }
 
 label
@@ -139,28 +154,28 @@ label
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     margin-right: 200px;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 .Input
 {
     width: 300px;
-    height: 40px;
+    height: 90px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid gray;
 }
 
 #submit-btn
 {
     width: 200px;
-    height: 40px;
+    height: 90px;
     border-radius: 20px;
     border: 1px solid black;
     background-color: blue;
     font-weight: bold;
     font-size: medium;
     color: white;
-    margin-top: 25px;
+    margin-top: 15px;
     cursor: pointer;
 }
 

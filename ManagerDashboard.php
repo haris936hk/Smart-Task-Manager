@@ -14,7 +14,7 @@
         <img class="logo" src="Logo.png" alt="Image not found!">
         <div class="inbar">
             <button class="btn" type="button" onclick="redirectToDashboard()">Dashboard</button>
-            <button class="btn" type="button" onclick="redirectToTaskList()">Task</button>
+            <button class="btn" type="button" onclick="redirectToTaskList()">Task List</button>
             <button class="btn" type="button" onclick="redirectToTask()">Create New Task</button>
         </div>
     </div>
@@ -22,9 +22,7 @@
     <!-- Header -->
     <div class="Navbar">
         <h1 id="heading">Smart Task Manager</h1>
-        <button type="button" id="profile_btn">
-            <img id="profile_icon" src="Profile_icon.svg" alt="Icon not found!">
-        </button>
+        <button type="button" id="Logout">Log Out</button>
     </div>
 
     <!-- Task Statistics -->

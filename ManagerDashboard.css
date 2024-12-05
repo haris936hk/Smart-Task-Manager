@@ -78,24 +78,20 @@ body
     margin-left: 330px;
 }
 
-#profile_btn {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    outline: none;
-    background-color: rgb(255, 255, 255);
-    border: none;
-    display: flex; /* Flexbox for icon alignment */
-    align-items: center;
-    justify-content: center;
-    margin-right: 30px;
-}
-
-#profile_icon
+#Logout
 {
-    width: 50px;
-    height: 50px;
-
+    width: 90px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-right: 30px;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
 }
 
 /* Navbar code Complete */

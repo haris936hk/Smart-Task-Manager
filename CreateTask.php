@@ -67,53 +67,57 @@ $conn->close();
         <img class="logo" src="Logo.png" alt="Image not found!">
         <div class="inbar">
             <button class="btn" type="button" onclick="redirectToDashboard()">Dashboard</button>
-            <button class="btn" type="button" onclick="redirectToTaskList()">Task</button>
-            <button class="btn" type="button" onclick="redirectToTask()">Create New Task</button>
+            <button class="btn" type="button" onclick="redirectToTaskList()">Task List</button>
+            <button class="btn" type="button" onclick="redirectToCreateTask()">Create New Task</button>
         </div>
     </div>
     <div class="Navbar">
         <h1 id="heading">Smart Task Manager</h1>
-        <button type="button" id="profile_btn"><img id="profile_icon" src="Profile_icon.svg"
-                alt="Icon not found!"></button>
+        <button type="button" id="Logout">Log Out</button>
     </div>
-    <div id="Tasks">
-        <form action="" method="POST" id="TaskForm">
-            <h2 id="TaskHeading">Create New Task</h2>
-            <div id="TaskEntery">
-                <label for="taskTitle">Task Title</label>
-                <input type="text" class="Input" name="taskTitle" required>
-                <label for="taskDescription">Description</label>
-                <textarea id="taskDescription" class="Input" name="taskDescription" required></textarea>
-                <label for="assignee">Assign To</label>
-                <select id="assignee" class="Input" name="assignee" required>
-                    <option value="">Select Assignee</option>
-                    <?php
-                    // Fetch available employees from the database
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
 
-                    $result = $conn->query("SELECT user_id, full_name FROM AvailableEmployees");
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row['user_id'] . "'>" . $row['full_name'] . "</option>";
+    
+        <div id="Tasks">
+        <div id="container">
+            <form action="" method="POST" id="TaskForm">
+                
+                <div id="TaskEntery">
+                <h2 id="TaskHeading">Create New Task</h2>
+                    <label for="taskTitle">Task Title</label>
+                    <input type="text" class="Input" name="taskTitle" required>
+                    <label for="taskDescription">Description</label>
+                    <input id="taskDescription" class="Input" name="taskDescription" required></input>
+                    <label for="assignee">Assign To</label>
+                    <select id="assignee" class="Input" name="assignee" required>
+                        <option value="">Select Assignee</option>
+                        <?php
+                        // Fetch available employees from the database
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
                         }
-                    }
-                    $conn->close();
-                    ?>
-                </select>
-                <label for="dueDate">Due Date</label>
-                <input id="dueDate" type="date" class="Input" name="dueDate" required>
-                <label for="priority">Priority</label>
-                <select id="priority" class="Input" name="priority" required>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                </select>
-                <button type="submit" id="submit-btn">Create Task</button>
-            </div>
-        </form>
+
+                        $result = $conn->query("SELECT user_id, full_name FROM AvailableEmployees");
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<option value='" . $row['user_id'] . "'>" . $row['full_name'] . "</option>";
+                            }
+                        }
+                        $conn->close();
+                        ?>
+                    </select>
+                    <label for="dueDate" id="lbldue">Due Date</label>
+                    <input id="dueDate" type="date" class="Input" name="dueDate" required>
+                    <label for="priority">Priority</label>
+                    <select id="priority" class="Input" name="priority" required>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                    <button type="submit" id="submit-btn">Create Task</button>
+                </div>
+            </form>
+        </div>
     </div>
     <script src="CreateTask.js"></script>
 </body>

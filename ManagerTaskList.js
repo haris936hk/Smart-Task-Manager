@@ -11,3 +11,15 @@ function togglePopup(title)
         popup.style.display = 'none';
     }
 }
+
+function redirectToDashboard() {
+    window.location.href = "ManagerDashboard.php";
+  }
+  
+  function redirectToTaskList() {
+    window.location.href = "ManagerTaskList.php";
+  }
+  
+  function redirectToTaskList() {
+    window.location.href = "CreateTask.php";
+  }

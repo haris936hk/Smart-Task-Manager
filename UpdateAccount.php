@@ -25,24 +25,24 @@
                     <label for="css" class="lbl">Employee</label>
                 </div>
 
-                <label for="inputbox" id="searchlbl"> Search User </label> <br>
-                <div class="search-container">
-                    <form class="search-container" action="/search" method="get">
-                        <input type="text" placeholder="Search">
-                        <button type="submit" class="search-icon-btn"><img class="search_icon" src="Search_icon.svg"
-                                alt="Icon not fount!"></button>
-                    </form>
-                </div> <br> <br>
+                <div id="insidedive">
+                    <label for="search" id="nmlbl"> Search User</label>
+                    <input type="text" id="nminputbox" onkeyup="filterFunction()" placeholder="Search for names..">
+                    <ul id="dropdownList" class="dropdown-list">
 
-                <label for="inputbox" id="nmlbl">Enter Full Name for Update</label>
-                <input type="text" name="nm" id="nminputbox" placeholder="Name" pattern="[A-Za-z]+"
-                    title="Only alphabets are allowed" required> <br><br>
+                    </ul> <br>
 
-                <label for="inputbox" id="maillbl">Enter Email Address for Update</label>
-                <input type="email" name="cnic" id="mailinputbox" placeholder="abc@gmail.com"
-                    title="Enter a valid email address" required> <br>
+                    <label for="inputbox" id="nmlbl">Enter Full Name for Update</label>
+                    <input type="text" name="nm" id="nminputbox" placeholder="Name" pattern="[A-Za-z]+"
+                        title="Only alphabets are allowed" required> <br><br>
 
-                <button name="UpdateAccountbtn" id="btn" type="submit"> Update Account </button>
+                    <label for="inputbox" id="maillbl">Enter Email Address for Update</label>
+                    <input type="email" name="cnic" id="mailinputbox" placeholder="abc@gmail.com"
+                        title="Enter a valid email address" required> <br>
+
+                    <button name="UpdateAccountbtn" id="btn" type="submit"> Update Account </button>
+                </div>
+
             </form>
         </div>
     </div>

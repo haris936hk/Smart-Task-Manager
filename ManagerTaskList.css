@@ -77,27 +77,21 @@ body
     margin: 0; /* Reset default margin */
     margin-left: 330px;
 }
-
-#profile_btn {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    outline: none;
-    background-color: rgb(255, 255, 255);
-    border: none;
-    display: flex; /* Flexbox for icon alignment */
-    align-items: center;
-    justify-content: center;
-    margin-right: 30px;
-}
-
-#profile_icon
+#Logout
 {
-    width: 50px;
-    height: 50px;
-
+    width: 90px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-right: 30px;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
 }
-
 /* Tasks and Table Code */
 #Tasks {
     display: inline-flex;
@@ -123,176 +117,85 @@ body
     margin: 0px;
 }
 
-table 
-{
+/* General table styling */
+table {
     font-family: Arial, sans-serif;
     border-spacing: 0;
     width: 100%;
     border-radius: 25px;
     height: 600px;
+    text-align: center; /* Center text in all cells */
 }
 
-table tr:first-child  th:first-child,
-table tr:first-child  td:first-child
-{
-    border-top-right-radius: 20px;
+table th, table td {
+    text-align: center; /* Center text horizontally */
+    vertical-align: middle; /* Center text vertically */
+    padding: 8px; /* Optional padding */
 }
 
-table tr:first-child  th:first-child,
-table tr:first-child  td:first-child
-{
-    border-top-left-radius: 20px;
+/* Style for table cells except the one with H2 title */
+table th:not(#title),
+table td {
+  width: 140px; /* Adjust to your desired width */
+  text-align: left; /* Optional alignment */
+  padding: 8px; /* Optional padding */
 }
 
-table tr:nth-child(10)  td:first-child
-{
-    border-bottom-left-radius: 20px;
+/* Style for the title cell (ID 'title') */
+#title {
+  text-align: center;
+  width: auto; /* Let it take as much space as needed */
 }
 
-table tr:nth-child(10)  td:last-child
-{
-    border-bottom-right-radius: 20px;
+/* First row corner radius */
+table tr:first-child th:first-child,
+table tr:first-child td:first-child {
+  border-top-left-radius: 20px;
 }
 
-table th:nth-child(2), /* Target the "Name" header */
-table td:nth-child(2)  /* Target the "Name" column cells */
-{
-    width: 170px; /* Adjust to desired width */
+table tr:first-child th:last-child,
+table tr:first-child td:last-child {
+  border-top-right-radius: 20px;
 }
 
-table th:nth-child(3), /* Target the "Category" header */
-table td:nth-child(3)  /* Target the "Category" column cells */
-{
-    width: 140px; /* Adjust to desired width */
+/* Last row corner radius */
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 20px;
 }
 
-table th:nth-child(4), /* Target the "Status" header */
-table td:nth-child(4)  /* Target the "Status" column cells */
-{
-    width: 140px; /* Adjust to desired width */
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 20px;
 }
 
-table th:nth-child(5), /* Target the "Status" header */
-table td:nth-child(5)  /* Target the "Status" column cells */
-{
-    width: 140px; /* Adjust to desired width */
+/* Width adjustments for specific columns */
+table th:nth-child(2), /* "Name" column */
+table td:nth-child(2) {
+  width: 170px;
 }
 
-table th:nth-child(6), /* Target the "Status" header */
-table td:nth-child(6)  /* Target the "Status" column cells */
-{
-    width: 140px; /* Adjust to desired width */
+table th:nth-child(3), /* "Priority" column */
+table td:nth-child(3) {
+  width: 140px;
 }
 
-table th:nth-child(7), /* Target the "Status" header */
-table td:nth-child(7)  /* Target the "Status" column cells */
-{
-    width: 140px; /* Adjust to desired width */
+table th:nth-child(4), /* "Status" column */
+table td:nth-child(4) {
+  width: 140px;
 }
 
-table, th, td 
-{
-    border: 1px solid black;
-    /* padding: 9.5px; */
-    text-align: center;
-    
+table th:nth-child(5), /* "Deadline" column */
+table td:nth-child(5) {
+  width: 140px;
 }
 
-.Notes-button, .Member-button 
-{
-    background-color: blue;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    font-size: 12px;
-    width: 90px;
-    cursor: pointer;
-    height: 20px;
+table,
+th,
+td {
+  border: 1px solid black;
+  /* padding: 9.5px; */
+  text-align: center;
 }
 
-/* Popup Styles */
-.popup 
-{
-    display: none;
-    position:fixed;
-    z-index: 10;
-    top: 0;
-    right: 0;
-    width:100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.popup-content 
-{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 0px;
-    border-radius: 10px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 255, 0.4);
-    width: 350px;
-    height: 150px;
-    text-align: center;
-}
-
-#popup-title
-{
-    margin: 0px;
-    margin-top: 8px;
-}
-
-#popup-list
-{
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    text-align: center;
-    cursor: pointer;
-    margin-right: 0px;
-    margin-top: 2px;
-    justify-content: center;
-    align-items: center;
-    padding-left: 0px;
-}
-
-.popup-list-item
-{
-    list-style: none;
-    text-align: center;
-    border: 1px solid blue;
-    cursor: pointer;
-    margin-left: 0px;
-    margin-top: 2px;
-    align-items: center;
-    border-radius: 5px;
-    width: 300px;
-}
-
-.popup-list-item
-{
-    transition: box-shadow 0.3s ease-in-out; /* Adjust the transition duration as needed */
-}
-
-.popup-list-item:hover 
-{
-    box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.2);
-}
-
-.close 
-{
-    position: absolute;
-    top: 2x;
-    right: 5px;
-    font-size: 25px;
-    font-weight:bolder;
-    cursor: pointer;
-    color: black;
-
-
-}
 
 .deadline-input
 {
