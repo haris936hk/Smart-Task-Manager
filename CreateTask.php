@@ -1,12 +1,22 @@
 <?php
-// Include database connection
-include('db_connection.php');
+// Database connection
+$servername = "localhost"; // Update with your server name
+$username = "root";        // Update with your database username
+$password = "";            // Update with your database password
+$dbname = "smarttaskmanager"; // Update with your database name
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve form data
     $taskTitle = $conn->real_escape_string($_POST['taskTitle']);
     $taskDescription = $conn->real_escape_string($_POST['taskDescription']);
-    $assignee = isset($_POST['assignee']) ? $_POST['assignee'] : '';  // Handling multiple assignees
+    $assignee = $conn->real_escape_string($_POST['assignee']);
     $dueDate = $conn->real_escape_string($_POST['dueDate']);
     $priority = $conn->real_escape_string($_POST['priority']);
 
@@ -21,25 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($conn->query($sql) === TRUE) {
             $taskId = $conn->insert_id; // Get the ID of the inserted task
 
-            // Assign task to employee(s)
+            // Assign task to employee
             if (!empty($assignee)) {
-                // Check if multiple employees are selected
-                if (is_array($assignee)) {
-                    foreach ($assignee as $employeeId) {
-                        $sqlAssign = "INSERT INTO TaskTeamMembers (task_id, employee_id) 
-                                      VALUES ('$taskId', '$employeeId')";
+                $sqlAssign = "INSERT INTO TaskTeamMembers (task_id, employee_id) 
+                              VALUES ('$taskId', '$assignee')";
 
-                        if ($conn->query($sqlAssign) !== TRUE) {
-                            echo "<script>alert('Task created but failed to assign employee!');</script>";
-                        }
-                    }
-                } else {
-                    $sqlAssign = "INSERT INTO TaskTeamMembers (task_id, employee_id) 
-                                  VALUES ('$taskId', '$assignee')";
-
-                    if ($conn->query($sqlAssign) !== TRUE) {
-                        echo "<script>alert('Task created but failed to assign employee!');</script>";
-                    }
+                if ($conn->query($sqlAssign) !== TRUE) {
+                    echo "<script>alert('Task created but failed to assign employee!');</script>";
                 }
             }
 
@@ -87,16 +85,22 @@ $conn->close();
                 <label for="taskDescription">Description</label>
                 <textarea id="taskDescription" class="Input" name="taskDescription" required></textarea>
                 <label for="assignee">Assign To</label>
-                <select id="assignee" class="Input" name="assignee[]" multiple required>
+                <select id="assignee" class="Input" name="assignee" required>
                     <option value="">Select Assignee</option>
                     <?php
                     // Fetch available employees from the database
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
                     $result = $conn->query("SELECT user_id, full_name FROM AvailableEmployees");
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<option value='" . $row['user_id'] . "'>" . $row['full_name'] . "</option>";
                         }
                     }
+                    $conn->close();
                     ?>
                 </select>
                 <label for="dueDate">Due Date</label>
