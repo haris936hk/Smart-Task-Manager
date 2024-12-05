@@ -64,8 +64,7 @@ $conn->close();
     </div>
     <div class="Navbar">
         <h1 id="heading">Smart Task Manager</h1>
-        <button type="button" id="profile_btn"><img id="profile_icon" src="Profile_icon.svg"
-                alt="Icon not found!"></button>
+        <button type="button" id="Logout" onclick="redirectToLogin()">Log Out</button>
     </div>
     <div id="Tasks">
         <form action="" method="POST" id="TaskForm">

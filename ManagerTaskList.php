@@ -1,3 +1,12 @@
+<?php
+// Database connection
+include('db_connection.php');
+
+// Fetch tasks and team member details
+$sql = "SELECT * FROM TaskDetailsWithTeam";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="ManagerTasklist.css">
-    <title>EmployeeTaskList</title>
+    <title>ManagerTaskList</title>
 </head>
 
 <body>
@@ -20,7 +29,7 @@
 
     <div class="Navbar">
         <h1 id="heading">Smart Task Manager</h1>
-        <button type="button" id="Logout">Log Out</button>
+        <button type="button" id="Logout" onclick="redirectToLogin()">Log Out</button>
     </div>
 
     <div id="Tasks">
@@ -32,76 +41,30 @@
             </tr>
             <tr>
                 <th>No</th>
-                <th>Name</th>
+                <th>Task Title</th>
                 <th>Priority</th>
                 <th>Assignee</th>
                 <th>Status</th>
                 <th>Deadline</th>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-            </tr>
+
+            <?php
+            if ($result->num_rows > 0) {
+                $task_no = 1;
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $task_no++ . "</td>";
+                    echo "<td>" . htmlspecialchars($row['title']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['priority']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['team_members']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['status']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['due_date']) . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='6'>No tasks available</td></tr>";
+            }
+            ?>
         </table>
     </div>
 
@@ -109,3 +72,8 @@
 </body>
 
 </html>
+
+<?php
+// Close the database connection
+$conn->close();
+?>

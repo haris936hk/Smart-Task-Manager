@@ -23,3 +23,7 @@ function redirectToDashboard() {
   function redirectToTaskList() {
     window.location.href = "CreateTask.php";
   }
+
+  function redirectToLogin() {
+    window.location.href='Login.php';
+  }

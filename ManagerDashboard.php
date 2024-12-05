@@ -4,7 +4,7 @@ include('db_connection.php');
 
 // Fetch task statistics
 $totalTasksQuery = "SELECT COUNT(*) AS total FROM Tasks";
-$pendingTasksQuery = "SELECT COUNT(*) AS pending FROM Tasks WHERE status = 'Pending'";
+$pendingTasksQuery = "SELECT COUNT(*) AS inprogress FROM Tasks WHERE status = 'In Progress'";
 $completedTasksQuery = "SELECT COUNT(*) AS completed FROM Tasks WHERE status = 'Completed'";
 
 $totalTasksResult = $conn->query($totalTasksQuery);
@@ -13,7 +13,7 @@ $completedTasksResult = $conn->query($completedTasksQuery);
 
 // Fetch the values from the results
 $totalTasks = $totalTasksResult->fetch_assoc()['total'];
-$pendingTasks = $pendingTasksResult->fetch_assoc()['pending'];
+$pendingTasks = $pendingTasksResult->fetch_assoc()['inprogress'];
 $completedTasks = $completedTasksResult->fetch_assoc()['completed'];
 
 // Close the database connection
@@ -44,7 +44,7 @@ $conn->close();
     <!-- Header -->
     <div class="Navbar">
         <h1 id="heading">Smart Task Manager</h1>
-        <button type="button" id="Logout">Log Out</button>
+        <button type="button" id="Logout" onclick="redirectToLogin()">Log Out</button>
     </div>
 
     <!-- Task Statistics -->

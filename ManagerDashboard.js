@@ -87,3 +87,7 @@ function redirectToTask()
 {
     window.location.href = "CreateTask.php";
 }
+
+function redirectToLogin() {
+    window.location.href='Login.php';
+  }
