@@ -21,31 +21,3 @@
 </body>
 
 </html>
-
-
-<!-- php Code started from here -->
-
-<?php
-
-    $con = mysqli_connect("localhost", "root", "", "smarttaskmanager");
-
-    if (!$con) 
-    {
-        echo "<script> alert('Connection Failed') </script>";
-    }
-    else 
-    {
-        // Check which button was pressed
-        if (isset($_POST['Mngbtn'])) {
-            $userType = 'Manager';
-        } elseif (isset($_POST['Empbtn'])) {
-            $userType = 'Employee';
-        } else {
-            $userType = null; // Handle invalid input
-        }
-    }
-    if($userType)
-    {
-        
-    }
-?>
