@@ -42,7 +42,6 @@ class User {
     }
 
     public function logOut(): void {
-        // Session or authentication token cleanup logic can go here.
     }
 
     public function resetPassword(string $email, string $newPassword): bool {
@@ -68,23 +67,14 @@ class Admin extends User {
         parent::__construct($db, $userID);
     }
 
-    /**
-     * Create a new user account.
-     * @param array $userDetails
-     * @return bool
-     */
     public function createAccount(array $userDetails): bool {
         try {
-            // Validate user details
             $this->validateUserDetails($userDetails);
 
-            // Hash the password
             $hashedPassword = password_hash($userDetails['password'], PASSWORD_DEFAULT);
 
-            // Begin transaction
             $this->db->beginTransaction();
 
-            // Insert into Users table
             $stmt = $this->db->prepare(
                 "INSERT INTO Users (username, password, email, user_type) 
                  VALUES (:username, :password, :email, :user_type)"
@@ -96,42 +86,29 @@ class Admin extends User {
                 'user_type' => $userDetails['user_type']
             ]);
 
-            // Get the last inserted user ID
             $userID = $this->db->lastInsertId();
 
-            // Insert into role-specific table
-            $roleTable = $userDetails['user_type'] . 's'; // E.g., Employees, Managers, Admins
+            $roleTable = $userDetails['user_type'] . 's'; 
             $stmt = $this->db->prepare(
                 "INSERT INTO {$roleTable} ({$userDetails['user_type']}ID) VALUES (:userID)"
             );
             $stmt->execute(['userID' => $userID]);
-
-            // Commit transaction
             $this->db->commit();
             return true;
         } catch (PDOException $e) {
-            // Rollback transaction in case of an error
             $this->db->rollBack();
             error_log("Create account error: " . $e->getMessage());
             return false;
         }
     }
 
-    /**
-     * Update an existing user account.
-     * @param int $userID
-     * @param array $updatedDetails
-     * @return bool
-     */
     public function updateAccount(int $userID, array $updatedDetails): bool {
         try {
-            // Validate updated details
             $this->validateUserDetails($updatedDetails, true);
 
             $updateFields = [];
             $params = ['userID' => $userID];
 
-            // Build dynamic update query
             foreach ($updatedDetails as $field => $value) {
                 if ($field !== 'password') {
                     $updateFields[] = "$field = :$field";
@@ -139,7 +116,6 @@ class Admin extends User {
                 }
             }
 
-            // Update password if provided
             if (isset($updatedDetails['password'])) {
                 $updateFields[] = "password = :password";
                 $params['password'] = password_hash($updatedDetails['password'], PASSWORD_DEFAULT);
@@ -154,49 +130,31 @@ class Admin extends User {
         }
     }
 
-    /**
-     * Delete an existing user account.
-     * @param int $userID
-     * @return bool
-     */
     public function deleteAccount(int $userID): bool {
         try {
-            // Begin transaction
             $this->db->beginTransaction();
-
-            // Get the user type (Admin, Employee, or Manager)
             $stmt = $this->db->prepare("SELECT user_type FROM Users WHERE userID = :userID");
             $stmt->execute(['userID' => $userID]);
             $userType = $stmt->fetchColumn();
 
             if ($userType) {
-                // Delete from role-specific table first
-                $roleTable = $userType . 's'; // E.g., Employees, Managers, Admins
+                $roleTable = $userType . 's'; 
                 $stmt = $this->db->prepare("DELETE FROM {$roleTable} WHERE {$userType}ID = :userID");
                 $stmt->execute(['userID' => $userID]);
             }
 
-            // Delete from Users table
             $stmt = $this->db->prepare("DELETE FROM Users WHERE userID = :userID");
             $stmt->execute(['userID' => $userID]);
 
-            // Commit transaction
             $this->db->commit();
             return true;
         } catch (PDOException $e) {
-            // Rollback transaction in case of an error
             $this->db->rollBack();
             error_log("Delete account error: " . $e->getMessage());
             return false;
         }
     }
 
-    /**
-     * Change the password for a user account.
-     * @param int $userID
-     * @param string $newPassword
-     * @return bool
-     */
     public function changePassword(int $userID, string $newPassword): bool {
         if (strlen($newPassword) < 8) {
             throw new InvalidArgumentException('Password must be at least 8 characters');
@@ -217,12 +175,6 @@ class Admin extends User {
         }
     }
 
-    /**
-     * Validate user details.
-     * @param array $details
-     * @param bool $isUpdate
-     * @return bool
-     */
     private function validateUserDetails(array $details, bool $isUpdate = false): bool {
         $required = ['username', 'email'];
         if (!$isUpdate) {
@@ -263,7 +215,7 @@ class Manager extends User {
                 "INSERT INTO Tasks (title, description, priority, deadline, category, status, created_by)
                  VALUES (:title, :description, :priority, :deadline, :category, 'New', :created_by)"
             );
-            $taskDetails['created_by'] = $this->userID; // Set manager's ID as creator
+            $taskDetails['created_by'] = $this->userID; 
             $stmt->execute($taskDetails);
             return true;
         } catch (PDOException $e) {
@@ -420,7 +372,6 @@ class Task {
     public function save(): bool {
         try {
             if ($this->taskID === 0) {
-                // Insert new task
                 $stmt = $this->db->prepare(
                     "INSERT INTO Tasks (title, description, priority, deadline, category, status, created_by)
                      VALUES (:title, :description, :priority, :deadline, :category, :status, :created_by)"
@@ -436,7 +387,6 @@ class Task {
                 ]);
                 $this->taskID = $this->db->lastInsertId();
             } else {
-                // Update existing task
                 $stmt = $this->db->prepare(
                     "UPDATE Tasks SET title = :title, description = :description, 
                      priority = :priority, deadline = :deadline, category = :category, status = :status
@@ -490,7 +440,6 @@ class Task {
         }
     }
 
-    // Getters
     public function getAssignedEmployees(): array {
         return $this->assignedEmployees;
     }
