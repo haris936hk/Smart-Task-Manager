@@ -75,7 +75,7 @@
                 <th>Priority</th>
                 <th>Status</th>
                 <th>Deadline</th>
-                <th>Team Members</th>
+                <th>Employee</th>
                 <th>Notes</th>
             </tr>
             <tr>
@@ -85,16 +85,16 @@
                 <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
                 <td>
-                    <button class="Member-button" onclick="togglePopupe('membersPopup')">Members</button>
+                    <button class="Member-button" onclick="togglePopupe('membersPopup')">Employees</button>
                     <div class="overlay" id="overlay-members" onclick="togglePopupe('membersPopup')"></div>
                     <div class="popup" id="membersPopup">
                         <h3>Members</h3>
                         <ul class="scrollable-list">
-                            <li>Member-01</li>
-                            <li>Member-02</li>
-                            <li>Member-03</li>
-                            <li>Member-04</li>
-                            <li>Member-05</li>
+                            <li>Employee-01</li>
+                            <li>Employee-02</li>
+                            <li>Employee-03</li>
+                            <li>Employee-04</li>
+                            <li>Employee-05</li>
                         </ul>
                     </div>
                 </td>
@@ -113,7 +113,7 @@
                 <td></td>
                 <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
+                <td><button class="Member-button" onclick="togglePopup('Members')">Employees</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
@@ -122,7 +122,7 @@
                 <td></td>
                 <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
+                <td><button class="Member-button" onclick="togglePopup('Members')">Employees</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
@@ -131,7 +131,7 @@
                 <td></td>
                 <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
+                <td><button class="Member-button" onclick="togglePopup('Members')">Employees</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
@@ -140,7 +140,7 @@
                 <td></td>
                 <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
+                <td><button class="Member-button" onclick="togglePopup('Members')">Employees</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
@@ -149,7 +149,7 @@
                 <td></td>
                 <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
+                <td><button class="Member-button" onclick="togglePopup('Members')">Employees</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
@@ -158,7 +158,7 @@
                 <td></td>
                 <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
+                <td><button class="Member-button" onclick="togglePopup('Members')">Employees</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <tr>
@@ -167,7 +167,7 @@
                 <td></td>
                 <td></td>
                 <td><input type="text" placeholder="dd/mm/yyyy" class="deadline-input" disabled></td>
-                <td><button class="Member-button" onclick="togglePopup('Members')">Members</button></td>
+                <td><button class="Member-button" onclick="togglePopup('Members')">Employees</button></td>
                 <td><button class="Notes-button" onclick="togglePopup('Notes')">Notes</button></td>
             </tr>
             <!-- Repeat rows as needed -->
@@ -192,7 +192,6 @@
             </ul>
         </div>
     </div>
-
     <script src="EmployeeTaskList.js"></script>
 </body>
 
