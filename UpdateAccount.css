@@ -1,197 +1,143 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: rgb(190, 190, 190);
-  }
-  
-  #Role
-  {
-    margin: 0px;
-  }
-  /* Initially, the container is hidden with opacity and visibility */
-  #container {
-    width: 800px;
-    height: 550px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.759);
-    color: rgb(0, 0, 0);
-    border-radius: 30px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  }
-  
-  #container.show {
-    display: flex; /* Show container */
-  }
-    
-  /* UpdateAccount Form Div Style code*/
-  
-  #UpdateAccount {
-    width: 370px;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.759);
-    color: rgb(0, 0, 0);
-    align-items: center;
-    justify-content: center;
-    border-radius: 30px;
-    box-shadow: 0px 0px 15px 5px rgba(190, 190, 190, 0.4);
-  }
-  
-  #UpdateAccount {
-    transition: box-shadow 0.3s ease-in-out; /* Adjust the transition duration as needed */
-  }
-  #UpdateAccount:hover {
-    box-shadow: 0px 0px 10px 10px rgba(0, 0, 255, 0.3);
-  }
-  
-  #UpdateAccountimg {
-    display: inline-flex;
-    width: 300px;
-    height: 250px;
-    background: none;
-    border: none;
-    margin-bottom: 30px;
-  }
-
-#insidedive
-{
-  width: 370px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
+/* Container styles for the image */
+#UpdateAccountimg {
+  width: 100%; /* Makes the image responsive */
+  max-width: 200px; /* Set a max width to avoid it being too large */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  margin: 0 auto 20px auto; /* Center image and add margin below */
 }
 
-/* Style the dropdown list */
+/* Form styling */
+#UpdateAccount {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Center align the form contents */
+}
+
+/* Dropdown styling */
 .dropdown-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ddd;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  background-color: #fff;
   position: absolute;
   width: 100%;
-  max-height: 150px;
-  overflow-y: auto;
-  background-color: white;
-  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
   border-radius: 4px;
-  display: none; /* Initially hidden */
-  margin-top: 5px;
-  list-style-type: none;
-  padding-left: 0;
 }
 
-/* Style individual list items */
+#nminputbox:focus + .dropdown-list,
+.dropdown-list:hover {
+  display: block;
+}
+
+/* Dropdown item styling */
 .dropdown-list li {
   padding: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+  font-size: 16px;
 }
 
-/* Highlight list items when hovered */
 .dropdown-list li:hover {
-  background-color: #f0f0f0;
+  background-color: #f1f1f1;
+  padding-left: 15px;
 }
-  
+
+/* Search input styling */
+#nminputbox {
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+#nminputbox:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Form container and button styles */
+#container {
+  position: relative;
+  margin-top: 50px;
+}
+
+/* Center the button */
 #btn {
-    display: flex;
-    width: 270px;
-    height: 35px;
-    background-color: rgb(0, 34, 255);
-    border-radius: 20px;
-    color: white;
-    font-weight: bolder;
-    font-size: 20px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    margin-left: 7%;
-    border: none;
-    box-shadow: 0px 0px 8px 8px (0, 0, 255, 0.5);
-  }
-  
-  #btn {
-    transition: box-shadow 0.2s ease-in-out; /* Adjust the transition duration as needed */
-  }
-  #btn:hover {
-    box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.4);
-  }
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 200px; /* Fixed width for the button */
+  margin: 20px auto; /* Center the button */
+}
 
-  #searchlbl
-  {
-    color: rgb(0, 0, 0);
-    font-family: Arial, Helvetica, sans-serif;
-    margin-right: 110px;
-  }
-  
-  #nmlbl {
-    color: rgb(0, 0, 0);
-    font-family: Arial, Helvetica, sans-serif;
-    margin-right: 110px;
-  }
+#btn:hover {
+  background-color: #0056b3;
+}
 
-  #maillbl {
-    color: rgb(0, 0, 0);
-    font-family: Arial, Helvetica, sans-serif;
-    margin-right: 80px;
-  }
-  
-  #inputbox {
-    width: 300px;
-    height: 35px;
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 10px;
-    margin-top: 2px;
-  }
-  #inputbox::placeholder {
-    color: rgba(3, 3, 168, 0.345);
-  }
-  
-  #nminputbox {
-    width: 300px;
-    height: 35px;
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 10px;
-    margin-top: 2px;
-  }
-  #nminputbox::placeholder {
-    color: rgba(3, 3, 168, 0.345);
-  }
-  #nminputbox:focus {
-    border-color: blue;
-    outline: none;
-    box-shadow: 0px 0px 2px 2px rgba(0, 0, 255, 0.4);
-    font-size: 15px;
-  }
-  
-  #mailinputbox {
-    width: 300px;
-    height: 35px;
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 10px;
-    margin-top: 2px;
-  }
-  #mailinputbox::placeholder {
-    color: rgba(3, 3, 168, 0.345);
-  }
-  #mailinputbox:focus {
-    border-color: blue;
-    outline: none;
-    box-shadow: 0px 0px 2px 2px rgba(0, 0, 255, 0.4);
-    font-size: 15px;
-  }
+#btn:focus {
+  outline: none;
+}
 
-  #Role
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Input styling */
+input[type="text"], input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+input[type="text"]:focus, input[type="email"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Radio Button Styling */
+#Role {
   margin-bottom: 20px;
+  text-align: center;
+}
+
+.RadioButton {
+  margin-right: 10px;
+}
+
+.lbl {
+  font-size: 16px;
+}
+
+/* Inside div styling */
+#insidedive {
+  text-align: left;
+}
+
+/* Label styling */
+#nmlbl, #maillbl {
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"], input[type="email"] {
+  font-size: 14px;
 }
