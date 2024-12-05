@@ -67,8 +67,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="html" class="lbl">Manager</label>
                     <input type="radio" class="RadioButton" name="fav_language" value="Employee" required>
                     <label for="css" class="lbl">Employee</label>
-                    <input type="radio" class="RadioButton" name="fav_language" value="Admin" required>
-                    <label for="admin" class="lbl">Admin</label>
                 </div>
 
                 <label for="inputbox" class="lbl">Username</label> <br>
