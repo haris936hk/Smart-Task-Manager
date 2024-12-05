@@ -17,6 +17,13 @@
 
             <form action="" method="POST" onsubmit="return ValidationFun(event) "> <br>
 
+                <div id="Role">
+                    <input type="radio" class="RadioButton" name="fav_language" value="CSS">
+                    <label for="html" class="lbl">Manager</label>
+                    <input type="radio" class="RadioButton" name="fav_language" value="CSS">
+                    <label for="css" class="lbl">Employee</label>
+                </div>
+
                 <label for="inputbox" id="searchlbl"> Search User </label> <br>
                 <div class="search-container">
                     <form class="search-container" action="/search" method="get">
