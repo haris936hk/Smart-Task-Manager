@@ -1,48 +1,52 @@
 <?php
-// db_connection.php: Database connection (Make sure this file contains your DB connection details)
-include('db_connection.php');
+// Database connection
+$servername = "localhost"; // Update with your server name
+$username = "root";        // Update with your database username
+$password = "";            // Update with your database password
+$dbname = "smarttaskmanager"; // Update with your database name
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve POST data
-    $taskTitle = $_POST['taskTitle'];
-    $taskDescription = $_POST['taskDescription'];
-    $dueDate = $_POST['dueDate'];
-    $priority = $_POST['priority'];
-    $assignedEmployees = $_POST['employees']; // Array of employee IDs
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check if the form data is valid
-    if (!empty($taskTitle) && !empty($taskDescription) && !empty($dueDate) && !empty($priority)) {
-        // Step 1: Insert Task into Tasks Table
-        $sql = "INSERT INTO Tasks (title, description, priority, status, due_date) 
-                VALUES (?, ?, ?, 'Pending', ?)";
-        
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $taskTitle, $taskDescription, $priority, $dueDate);
-        
-        if ($stmt->execute()) {
-            // Get the task_id of the newly created task
-            $task_id = $conn->insert_id;
-
-            // Step 2: Assign Employees to the Task (Insert into TaskTeamMembers table)
-            foreach ($assignedEmployees as $employee_id) {
-                $sql_assign = "INSERT INTO TaskTeamMembers (task_id, employee_id) VALUES (?, ?)";
-                $stmt_assign = $conn->prepare($sql_assign);
-                $stmt_assign->bind_param("ii", $task_id, $employee_id);
-                $stmt_assign->execute();
-            }
-
-            // Success message (You can redirect to task list or show a success message)
-            $success_message = "Task created successfully!";
-        } else {
-            $error_message = "Error creating task: " . $conn->error;
-        }
-    } else {
-        $error_message = "Please fill in all the fields.";
-    }
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch active employees from the database
-$result = $conn->query("SELECT user_id, full_name FROM Users WHERE role = 'Employee' AND is_active = 1");
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Retrieve form data
+    $taskTitle = $conn->real_escape_string($_POST['taskTitle']);
+    $taskDescription = $conn->real_escape_string($_POST['taskDescription']);
+    $assignee = $conn->real_escape_string($_POST['assignee']);
+    $dueDate = $conn->real_escape_string($_POST['dueDate']);
+    $priority = $conn->real_escape_string($_POST['priority']);
+
+    // Validate data
+    if (empty($taskTitle) || empty($dueDate) || empty($priority)) {
+        echo "<script>alert('Please fill all required fields!');</script>";
+    } else {
+        // Insert task into the database
+        $sql = "INSERT INTO Tasks (title, description, priority, due_date)
+                VALUES ('$taskTitle', '$taskDescription', '$priority', '$dueDate')";
+
+        if ($conn->query($sql) === TRUE) {
+            $taskId = $conn->insert_id; // Get the ID of the inserted task
+
+            // Assign task to employee
+            if (!empty($assignee)) {
+                $sqlAssign = "INSERT INTO TaskTeamMembers (task_id, employee_id) 
+                              VALUES ('$taskId', '$assignee')";
+
+                if ($conn->query($sqlAssign) !== TRUE) {
+                    echo "<script>alert('Task created but failed to assign employee!');</script>";
+                }
+            }
+
+            echo "<script>alert('Task created successfully!');</script>";
+        } else {
+            echo "<script>alert('Error creating task: " . $conn->error . "');</script>";
+        }
+    }
+}
 
 // Close connection
 $conn->close();
@@ -67,61 +71,50 @@ $conn->close();
             <button class="btn" type="button" onclick="redirectToTask()">Create New Task</button>
         </div>
     </div>
-
     <div class="Navbar">
         <h1 id="heading">Smart Task Manager</h1>
         <button type="button" id="profile_btn"><img id="profile_icon" src="Profile_icon.svg"
                 alt="Icon not found!"></button>
     </div>
-
     <div id="Tasks">
         <form action="" method="POST" id="TaskForm">
             <h2 id="TaskHeading">Create New Task</h2>
-
             <div id="TaskEntery">
-                    <label for="taskTitle" >Task Title</label>
-                    <input type="text" class="Input" name="taskTitle" required>
+                <label for="taskTitle">Task Title</label>
+                <input type="text" class="Input" name="taskTitle" required>
+                <label for="taskDescription">Description</label>
+                <textarea id="taskDescription" class="Input" name="taskDescription" required></textarea>
+                <label for="assignee">Assign To</label>
+                <select id="assignee" class="Input" name="assignee" required>
+                    <option value="">Select Assignee</option>
+                    <?php
+                    // Fetch available employees from the database
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
 
-                    <label for="taskDescription">Description</label>
-                    <textarea id="taskDescription" class="Input" name="taskDescription" required></textarea>
-
-                    <label for="employee">Assign To</label>
-                    <select id="employee" class="Input" name="employees[]" multiple required>
-                        <!-- Populate dynamically with PHP -->
-                        <?php
+                    $result = $conn->query("SELECT user_id, full_name FROM AvailableEmployees");
+                    if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<option value='" . $row['user_id'] . "'>" . $row['full_name'] . "</option>";
                         }
-                        ?>
-                    </select>
-
-                    <label for="dueDate">Due Date</label>
-                    <input id="dueDate" type="date" class="Input" name="dueDate" required>
-
-                    <label for="priority">Priority</label>
-                    <select id="priority" class="Input" name="priority" required>
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
-
+                    }
+                    $conn->close();
+                    ?>
+                </select>
+                <label for="dueDate">Due Date</label>
+                <input id="dueDate" type="date" class="Input" name="dueDate" required>
+                <label for="priority">Priority</label>
+                <select id="priority" class="Input" name="priority" required>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
                 <button type="submit" id="submit-btn">Create Task</button>
             </div>
         </form>
-
-        <?php if (isset($success_message)) { ?>
-            <div class="success-message">
-                <p><?php echo $success_message; ?></p>
-            </div>
-        <?php } ?>
-
-        <?php if (isset($error_message)) { ?>
-            <div class="error-message">
-                <p><?php echo $error_message; ?></p>
-            </div>
-        <?php } ?>
     </div>
-
     <script src="CreateTask.js"></script>
 </body>
 
