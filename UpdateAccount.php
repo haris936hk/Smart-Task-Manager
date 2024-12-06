@@ -100,15 +100,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 </div>
 
                 <div id="insidedive">
-                    <label for="search" id="nmlbl"> Search User</label>
+                    <label for="search" class="lbl"> Search User</label>
                     <input type="text" id="nminputbox" placeholder="Search for names..">
                     <ul id="dropdownList" class="dropdown-list"></ul> <br>
 
-                    <label for="inputbox" id="nmlbl">Enter Full Name for Update</label>
+                    <label for="inputbox" class="lbl">Enter Full Name for Update</label>
                     <input type="text" name="nm" id="nameInputBox" placeholder="Name" pattern="[A-Za-z]+"
                         title="Only alphabets are allowed" required> <br><br>
 
-                    <label for="inputbox" id="maillbl">Enter Email Address for Update</label>
+                    <label for="inputbox" lbl="lbl">Enter Email Address for Update</label>
                     <input type="email" name="cnic" id="mailinputbox" placeholder="abc@gmail.com"
                         title="Enter a valid email address" required> <br>
 

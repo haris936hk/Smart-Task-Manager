@@ -91,3 +91,9 @@ function redirectToTask()
 function redirectToLogin() {
     window.location.href='Login.php';
   }
+
+  
+function redirectToSignup() {
+    window.location.href='SignUp.php';
+  }
+  
