@@ -33,6 +33,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   border-radius: 4px;
+  width: 370px;
 }
 
 #nminputbox:focus + .dropdown-list,
@@ -75,27 +76,6 @@
   margin-top: 50px;
 }
 
-/* Center the button */
-#btn {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 200px; /* Fixed width for the button */
-  margin: 20px auto; /* Center the button */
-}
-
-#btn:hover {
-  background-color: #0056b3;
-}
-
-#btn:focus {
-  outline: none;
-}
-
 /* Input styling */
 input[type="text"], input[type="email"] {
   width: 100%;
@@ -123,7 +103,9 @@ input[type="text"]:focus, input[type="email"]:focus {
 }
 
 .lbl {
-  font-size: 16px;
+  color: rgb(0, 0, 0);
+  /* font-weight: bold; */
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Inside div styling */
@@ -140,4 +122,89 @@ input[type="text"]:focus, input[type="email"]:focus {
 
 input[type="text"], input[type="email"] {
   font-size: 14px;
+}
+
+#container {
+  width: 800px;
+  height: 550px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.759);
+  color: rgb(0, 0, 0);
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#container.show {
+  display: flex; /* Show container */
+}
+
+/* When hiding SelectRol, reduce opacity and move it */
+#SelectRol.hide {
+  opacity: 0;
+  transform: translateY(20px); /* Optional: Add some movement */
+}
+
+/* SignUp Form Div Style code*/
+#UpdateAccount {
+  width: 370px;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.759);
+  color: rgb(0, 0, 0);
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  box-shadow: 0px 0px 15px 5px rgba(190, 190, 190, 0.4);
+}
+
+#UpdateAccount {
+  transition: box-shadow 0.3s ease-in-out; /* Adjust the transition duration as needed */
+}
+#UpdateAccount:hover {
+  box-shadow: 0px 0px 10px 10px rgba(0, 0, 255, 0.3);
+}
+
+#UpdateAccountimg{
+  display: inline-flex;
+  width: 400px;
+  height: 250px;
+  background: none;
+  border: none;
+  margin-bottom: 30px;
+}
+
+#btn {
+  display: flex;
+  width: 270px;
+  height: 35px;
+  background-color: rgb(0, 34, 255);
+  border-radius: 20px;
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 15%;
+  border: none;
+  box-shadow: 0px 0px 8px 8px (0, 0, 255, 0.5);
+  margin-right: 0px;
+}
+
+#btn {
+  transition: box-shadow 0.2s ease-in-out; /* Adjust the transition duration as needed */
+}
+#btn:hover {
+  box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.4);
 }

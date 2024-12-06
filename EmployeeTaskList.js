@@ -27,3 +27,18 @@ function closePopup() {
     document.getElementById("popup").style.display = "none";
 }
 
+function updateTaskStatus(taskId, isChecked) {
+    // Send an AJAX request to update the task status in the database
+    const status = isChecked ? 'Completed' : 'In Progress';
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '', true);  // Submit to the same file
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Optionally, you can handle the response here (e.g., show a success message)
+            console.log('Task status updated');
+        }
+    };
+    xhr.send('task_id=' + taskId + '&status=' + status);
+}
