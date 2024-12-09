@@ -23,16 +23,6 @@ body {
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-#container.show {
-  display: flex; /* Show container */
-}
-
-/* When hiding SelectRol, reduce opacity and move it */
-#SelectRol.hide {
-  opacity: 0;
-  transform: translateY(20px); /* Optional: Add some movement */
-}
-
 /* SignUp Form Div Style code*/
 #SignUp {
   width: 370px;
@@ -45,10 +35,7 @@ body {
   justify-content: center;
   border-radius: 30px;
   box-shadow: 0px 0px 15px 5px rgba(190, 190, 190, 0.4);
-}
-
-#SignUp {
-  transition: box-shadow 0.3s ease-in-out; /* Adjust the transition duration as needed */
+  transition: box-shadow 0.3s ease-in-out;
 }
 #SignUp:hover {
   box-shadow: 0px 0px 10px 10px rgba(0, 0, 255, 0.3);
@@ -72,18 +59,15 @@ body {
   color: white;
   font-weight: bolder;
   font-size: 20px;
-  text-align: center;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-  margin-left: 7%;
+  margin-left: 27px;
   border: none;
   box-shadow: 0px 0px 8px 8px (0, 0, 255, 0.5);
+  transition: box-shadow 0.2s ease-in-out;
 }
 
-#btn {
-  transition: box-shadow 0.2s ease-in-out; /* Adjust the transition duration as needed */
-}
 #btn:hover {
   box-shadow: 0px 0px 8px 8px rgba(0, 0, 255, 0.4);
 }

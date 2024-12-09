@@ -5,53 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="ResetPassword.css">
-    <title>PasswordHashing</title>
+    <title>Reset Password</title>
 </head>
 
 <body>
 
+    <title>Reset Password</title>
     <div id="container">
-        <img id="Resetimg" src="Logo.png" alt="Image not found!">
+        <img id="ResetPassImg" src="Logo.png" alt="Image not found!">
 
-        <div id="ResetPassword">
-
-            <form action="" method="POST" onsubmit="return ValidationFun(event) "> <br>
-
+        <div id="UpdateAccount">
+            <form id="updateAccountForm" method="POST" onsubmit="return false;">
                 <div id="Role">
-                    <input type="radio" class="RadioButton" name="fav_language" value="CSS">
+                    <p>Select Role First:</p>
+                    <input type="radio" class="RadioButton" name="role" value="Manager">
                     <label for="html" class="lbl">Manager</label>
-                    <input type="radio" class="RadioButton" name="fav_language" value="CSS">
+                    <input type="radio" class="RadioButton" name="role" value="Employee">
                     <label for="css" class="lbl">Employee</label>
                 </div>
 
-                <label for="inputbox" id="searchlbl"> Search User </label> <br>
-                <div class="search-container">
-                    <form class="search-container" action="/search" method="get">
-                        <input type="text" placeholder="Search">
-                        <button type="submit" class="search-icon-btn"><img class="search_icon" src="Search_icon.svg"
-                                alt="Icon not fount!"></button>
-                    </form>
-                </div> <br>
+                <div id="insidedive">
 
-                <label for="Passinputbox" id="paslbl">Enter Password</label>
-                <input type="password" id="Passinputbox" name="pswd" placeholder="Password" required> <br>
+                    <label for="search" id="searchlbl"> Search User</label>
+                    <input type="text" class="inputbox" placeholder="Search for user..">
+                    <ul id="dropdownList" class="dropdown-list"></ul>
 
-                <label for="Passinputbox" id="cpaslbl"> Confirm Password</label>
-                <input type="password" name="cnfrmpswd" id="cnfrmPassinputbox" placeholder="Confirm Password" required
-                    oninput="validatePassword()"> <br>
+                    <label for="inputbox" id="pswd">Enter New Password</label>
+                    <input type="password" name="Name" class="inputbox" placeholder="Password" title="Enter Password"
+                        required> <br>
 
-                <input id="check" type="checkbox" onclick="myFunction()">
-                <label for="check" id="Showpassword">Show Password</label>
+                    <label for="inputbox" id="cnfpswd">Confirm New Password</label>
+                    <input type="password" name="Email" class="inputbox" placeholder="Confirm Password"
+                        title="Confirm Password" required> <br>
 
-                <button name="UpdateAccountbtn" id="btn" type="submit" onclick="ValidationFun(event) "> Reset Password
-                </button>
+                    <input id="check" type="checkbox" onclick="myFunction()">
+                    <label for="check" id="Showpassword">Show Password</label>
+
+                    <button name="UpdateAccountbtn" id="btn" type="submit" onclick="ValidationFun(event) "> Reset
+                        Password</button>
+                </div>
             </form>
         </div>
-    </div>
-
-    <div id="alert">
-        <p>Your Password is Resest.</p>
-        <button onclick="document.getElementById('alert').style.display = 'none'"> Ok </button>
     </div>
 
     <script src="ResetPassword.js"></script>

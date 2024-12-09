@@ -1,67 +1,76 @@
-function ValidationFun(event) {
-    var pass = document.getElementById("Passinputbox");
-    var cnfpass = document.getElementById("cnfrmPassinputbox");
+// Get all form elements
+const form = document.getElementById('updateAccountForm');
+const roleInputs = document.getElementsByName('role');
+const searchInput = document.querySelector('input[placeholder="Search for user.."]');
+const passwordInput = document.querySelector('input[name="Name"]');
+const confirmPasswordInput = document.querySelector('input[name="Email"]');
+const showPasswordCheckbox = document.getElementById('check');
 
-    pass.style.border = "";
-    cnfpass.style.border = "";
-
-    if (pass.value === "") {
-        pass.style.border = "2px solid red";
-        pass.focus(); // Set focus to the first empty field
-        pass.style.boxShadow = "0px 0px 2px 2px rgba(255, 0, 0, 0.4)";
-        event.preventDefault(); // Prevent form submission
-        return false; // Prevent form submission
-    } else if (cnfpass.value === "") {
-        cnfpass.style.border = "2px solid red";
-        cnfpass.focus(); // Set focus to the first empty field
-        cnfpass.style.boxShadow = "0px 0px 2px 2px rgba(255, 0, 0, 0.4)";
-        event.preventDefault(); // Prevent form submission
-        return false; // Prevent form submission
-    }
-    // If everything is filled, allow the form to submit
-    return true; // Allow form submission
+// Disable all input fields initially
+function disableInputs(disabled) {
+    searchInput.disabled = disabled;
+    passwordInput.disabled = disabled;
+    confirmPasswordInput.disabled = disabled;
+    showPasswordCheckbox.disabled = disabled;
 }
 
+// Initialize all inputs as disabled
+disableInputs(true);
+
+// Add event listeners to role radio buttons
+roleInputs.forEach(radio => {
+    radio.addEventListener('change', () => {
+        // Enable all inputs when a role is selected
+        disableInputs(false);
+    });
+});
+
+// Show/Hide password functionality
 function myFunction() {
-    var x = document.getElementById("Passinputbox");
-    var y = document.getElementById("cnfrmPassinputbox");
-
-
-    if (x.type === "password") {
-        x.type = "text";
+    if (showPasswordCheckbox.checked) {
+        passwordInput.type = "text";
+        confirmPasswordInput.type = "text";
     } else {
-        x.type = "password";
-    }
-
-    if (y.type === "password") {
-        y.type = "text";
-    } else {
-        y.type = "password";
-    }
-
-    if (x.value !== "" && y.value === "") {
-        x.focus();
-    } else if (y.value !== "" && x.value === "") {
-        y.focus();
-    } else if (x.value !== "" && y.value !== "") {
-        y.focus();
+        passwordInput.type = "password";
+        confirmPasswordInput.type = "password";
     }
 }
 
-function validatePassword() {
-    var pass = document.getElementById("Passinputbox").value;
-    var cnfpass = document.getElementById("cnfrmPassinputbox");
+// Password validation function
+function ValidationFun(event) {
+    event.preventDefault();
+    
+    // Check if a role is selected
+    let roleSelected = false;
+    roleInputs.forEach(radio => {
+        if (radio.checked) roleSelected = true;
+    });
 
-    if (cnfpass.value !== pass) {
-        cnfpass.setCustomValidity("Passwords do not match"); // Show custom error
-    } else {
-        cnfpass.setCustomValidity(""); // Reset custom error
+    if (!roleSelected) {
+        alert("Please select a role first");
+        return false;
     }
+
+    // Get password values
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+        confirmPasswordInput.setCustomValidity("Passwords must match!");
+        confirmPasswordInput.reportValidity();
+        return false;
+    }
+
+    // Clear any previous validation messages if passwords match
+    confirmPasswordInput.setCustomValidity("");
+    
+    // If everything is valid, you can submit the form here
+    // form.submit();  // Uncomment this line when ready to submit
+    return true;
 }
 
-// Add an event listener to the "Show Alert" button
-document.getElementById('btn')
-    .addEventListener('click', function () {
-        document.getElementById('alert')
-            .style.display = 'block';
-    })
+// Add event listener for password input to clear validation message when typing
+confirmPasswordInput.addEventListener('input', () => {
+    confirmPasswordInput.setCustomValidity("");
+});

@@ -29,11 +29,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Bind the parameters and execute the query
         $stmt->bind_param("sssssi", $username, $fullname, $email, $hashedPassword, $role, $isActive);
 
-        // Execute the query and check if the insertion was successful
-        if ($stmt->execute()) {
-            echo "<script>alert('Account created successfully!'); window.location.href='SignUp.php';</script>";
-        } else {
-            echo "<script>alert('Error creating account. Please try again.');</script>";
+        // Execute the query and handle potential errors
+        try {
+            if ($stmt->execute()) {
+                echo "<script>alert('Account created successfully!'); window.location.href='SignUp.php';</script>";
+            }
+        } catch (mysqli_sql_exception $e) {
+            // Check if the error is due to a duplicate entry
+            if ($e->getCode() == 1062) {
+                echo "<script>alert('Username already exists. Please choose a different username.');</script>";
+            } else {
+                echo "<script>alert('Error creating account. Please try again.');</script>";
+            }
         }
     } else {
         echo "<script>alert('Passwords do not match.');</script>";
@@ -57,7 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <img id="SignUpimg" src="Logo.png" alt="Image not found!">
 
         <div id="SignUp">
-
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <br>
 
