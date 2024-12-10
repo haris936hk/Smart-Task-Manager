@@ -1,22 +1,20 @@
 <?php
 include("db_connection.php");
 
-// Function to fetch users by role
-function fetchUsers($role)
-{
-    global $servername, $username, $password, $dbname;
+function fetchUsers($role) {
+    global $conn;
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
     if ($conn->connect_error) {
         return ['error' => 'Connection failed: ' . $conn->connect_error];
     }
 
-    // Prepare SQL to fetch users by role
-    $sql = "SELECT full_name, email FROM Users WHERE role = ? AND is_active = TRUE";
+    $sql = "SELECT full_name, email FROM Users WHERE role = ?";
     $stmt = $conn->prepare($sql);
+
+    if (!$stmt) {
+        return ['error' => 'Prepare statement failed: ' . $conn->error];
+    }
+
     $stmt->bind_param("s", $role);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -27,9 +25,82 @@ function fetchUsers($role)
     }
 
     $stmt->close();
-    $conn->close();
-
     return $users;
+}
+
+function updateUserAccount($original_name, $new_name, $new_email) {
+    global $conn;
+
+    if ($conn->connect_error) {
+        return ['success' => false, 'message' => 'Database connection failed: ' . $conn->connect_error];
+    }
+
+    // Validate inputs
+    $new_name = trim($new_name);
+    $new_email = filter_var($new_email, FILTER_VALIDATE_EMAIL);
+
+    if (empty($new_name)) {
+        return ['success' => false, 'message' => 'Full name cannot be empty'];
+    }
+
+    if (!$new_email) {
+        return ['success' => false, 'message' => 'Invalid email format'];
+    }
+
+    // Check if the user with the original name exists
+    $checkUserSql = "SELECT full_name, email FROM Users WHERE full_name = ?";
+    $checkUserStmt = $conn->prepare($checkUserSql);
+    $checkUserStmt->bind_param("s", $original_name);
+    $checkUserStmt->execute();
+    $checkUserResult = $checkUserStmt->get_result();
+
+    if ($checkUserResult->num_rows === 0) {
+        return ['success' => false, 'message' => 'No matching user found'];
+    }
+
+    // Check for existing email for other users
+    $checkEmailSql = "SELECT COUNT(*) AS email_count FROM Users WHERE email = ? AND full_name != ?";
+    $checkStmt = $conn->prepare($checkEmailSql);
+    $checkStmt->bind_param("ss", $new_email, $original_name);
+    $checkStmt->execute();
+    $checkResult = $checkStmt->get_result();
+    $emailCheck = $checkResult->fetch_assoc();
+
+    // Close the statement after fetching the result
+    $checkStmt->close();
+
+    if ($emailCheck['email_count'] > 0) {
+        return ['success' => false, 'message' => 'Email already in use by another user'];
+    }
+
+    // Prepare SQL to update user
+    $sql = "UPDATE Users SET full_name = ?, email = ? WHERE full_name = ?";
+    $stmt = $conn->prepare($sql);
+
+    if (!$stmt) {
+        return ['success' => false, 'message' => 'Prepare statement failed: ' . $conn->error];
+    }
+
+    $stmt->bind_param("sss", $new_name, $new_email, $original_name);
+
+    try {
+        $result = $stmt->execute();
+
+        if ($result) {
+            if ($stmt->affected_rows > 0) {
+                $stmt->close();
+                return ['success' => true, 'message' => 'Account updated successfully'];
+            } else {
+                $stmt->close();
+                return ['success' => false, 'message' => 'No changes made or user not found'];
+            }
+        } else {
+            $stmt->close();
+            return ['success' => false, 'message' => 'Update failed: ' . $stmt->error];
+        }
+    } catch (Exception $e) {
+        return ['success' => false, 'message' => 'Exception: ' . $e->getMessage()];
+    }
 }
 
 // Handle AJAX requests
@@ -38,56 +109,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
     if ($_POST['action'] === 'fetch_users') {
         $role = $_POST['role'] ?? '';
-        echo json_encode(fetchUsers($role));
+        if (!empty($role)) {
+            $users = fetchUsers($role);
+            echo json_encode($users);
+        } else {
+            echo json_encode(['error' => 'Role not provided']);
+        }
         exit;
     }
 
     if ($_POST['action'] === 'update_account') {
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        $original_name = $_POST['original_nm'];
+        $new_name = $_POST['nm'];
+        $new_email = $_POST['Email'];
 
-        // Validate and sanitize inputs
-        $full_name = filter_input(INPUT_POST, 'nm', FILTER_SANITIZE_STRING);
-        $email = filter_input(INPUT_POST, 'cnic', FILTER_VALIDATE_EMAIL);
-
-        if (!$email) {
-            echo json_encode(['success' => false, 'message' => 'Invalid email format']);
-            exit;
-        }
-
-        // Prepare SQL to update user
-        $sql = "UPDATE Users SET email = ? WHERE full_name = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $email, $full_name);
-
-        try {
-            $result = $stmt->execute();
-
-            if ($result) {
-                echo json_encode(['success' => true]);
-            } else {
-                echo json_encode(['success' => false, 'message' => 'Update failed']);
-            }
-        } catch (Exception $e) {
-            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
-        }
-
-        $stmt->close();
-        $conn->close();
+        $result = updateUserAccount($original_name, $new_name, $new_email);
+        echo json_encode($result);
         exit;
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="UpdateAccount.css">
     <title>Update Account</title>
 </head>
-
 <body>
     <div id="container">
         <img id="UpdateAccountimg" src="Logo.png" alt="Image not found!">
@@ -103,25 +153,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 </div>
 
                 <div id="insidedive">
-
-                    <label for="search" id="searchlbl"> Search User</label>
-                    <input type="text" class="inputbox" placeholder="Search for user..">
+                    <label for="search" id="searchlbl">Search User</label>
+                    <input type="text" class="inputbox" placeholder="Search for user.." autocomplete="off" id="searchInput">
                     <ul id="dropdownList" class="dropdown-list"></ul>
 
                     <label for="inputbox" id="namelbl">Enter Full Name for Update</label>
-                    <input type="text" name="nm" class="inputbox" placeholder="Name" pattern="[A-Za-z]+"
-                        title="Only alphabets are allowed" required> <br>
+                    <input type="text" name="nm" class="inputbox" placeholder="Name" pattern="[A-Za-z\s]+" 
+                           title="Only alphabets and spaces are allowed" required> <br>
 
                     <label for="inputbox" id="Emaillbl">Enter Email Address for Update</label>
                     <input type="email" name="Email" class="inputbox" placeholder="abc@gmail.com"
-                        title="Enter a valid email address" required> <br>
+                           title="Enter a valid email address" required> <br>
 
                     <button name="UpdateAccountbtn" id="btn" type="submit"> Update Account </button>
                 </div>
             </form>
         </div>
     </div>
-            <script src="UpdateAccount.js"></script>
+    <script src="UpdateAccount.js"></script>
 </body>
-
 </html>
