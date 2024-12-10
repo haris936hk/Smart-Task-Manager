@@ -1,12 +1,5 @@
 <?php
-// Start session
-session_start();
-
-// Redirect to login page if the user is not logged in
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'Employee') {
-    header('Location: Login.php');
-    exit;
-}
+include('auth.php');
 
 // Include database connection
 include('db_connection.php');
@@ -72,9 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['task_id']) && isset($_
 
     <div class="Navbar">
         <h1 id="heading">Smart Task Manager</h1>
-        <form action="logout.php" method="POST">
-            <button type="submit" id="Logout">Log Out</button>
-        </form>
+        <button type="submit" id="Logout" onclick="window.location.href='logout.php'">Log Out</button>
     </div>
 
     <div id="Tasks">

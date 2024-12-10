@@ -1,4 +1,8 @@
 <?php
+
+// Include the authentication file
+include('auth.php');
+
 // Include the database connection file
 include('db_connection.php');
 
@@ -44,7 +48,7 @@ $conn->close();
     <!-- Header -->
     <div class="Navbar">
         <h1 id="heading">Smart Task Manager</h1>
-        <button type="button" id="Logout" onclick="redirectToLogin()">Log Out</button>
+        <button type="submit" id="Logout" onclick="window.location.href='logout.php'">Log Out</button>
     </div>
 
     <!-- Task Statistics -->

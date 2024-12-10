@@ -1,5 +1,7 @@
 <?php
-// Database connection
+include('auth.php');
+
+// Include database connection
 include('db_connection.php');
 
 // Fetch tasks and team member details
@@ -29,7 +31,7 @@ $result = $conn->query($sql);
 
     <div class="Navbar">
         <h1 id="heading">Smart Task Manager</h1>
-        <button type="button" id="Logout" onclick="redirectToLogin()">Log Out</button>
+        <button type="submit" id="Logout" onclick="window.location.href='logout.php'">Log Out</button>
     </div>
 
     <div id="Tasks">
