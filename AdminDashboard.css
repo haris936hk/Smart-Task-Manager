@@ -50,6 +50,10 @@ body {
     box-shadow: 0px 0px 8px 8px (0, 0, 255, 0.5);
 }
 
+.logout{
+  background-color: red;
+}
+
 .ActionButton
 {
     transition: box-shadow 0.2s ease-in-out; /* Adjust the transition duration as needed */
