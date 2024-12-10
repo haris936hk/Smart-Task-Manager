@@ -8,7 +8,7 @@ function fetchUsers($role) {
         return ['error' => 'Connection failed: ' . $conn->connect_error];
     }
 
-    $sql = "SELECT full_name, email FROM Users WHERE role = ?";
+    $sql = "SELECT full_name, email, username FROM Users WHERE role = ?";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
@@ -28,7 +28,7 @@ function fetchUsers($role) {
     return $users;
 }
 
-function updateUserAccount($original_name, $new_name, $new_email) {
+function updateUserAccount($original_name, $new_name, $new_email, $new_username) {
     global $conn;
 
     if ($conn->connect_error) {
@@ -38,9 +38,10 @@ function updateUserAccount($original_name, $new_name, $new_email) {
     // Validate inputs
     $new_name = trim($new_name);
     $new_email = filter_var($new_email, FILTER_VALIDATE_EMAIL);
+    $new_username = trim($new_username);
 
-    if (empty($new_name)) {
-        return ['success' => false, 'message' => 'Full name cannot be empty'];
+    if (empty($new_name) || empty($new_username)) {
+        return ['success' => false, 'message' => 'Full name and username cannot be empty'];
     }
 
     if (!$new_email) {
@@ -66,22 +67,35 @@ function updateUserAccount($original_name, $new_name, $new_email) {
     $checkResult = $checkStmt->get_result();
     $emailCheck = $checkResult->fetch_assoc();
 
-    // Close the statement after fetching the result
+    // Check for existing username for other users
+    $checkUsernameSql = "SELECT COUNT(*) AS username_count FROM Users WHERE username = ? AND full_name != ?";
+    $checkUsernameStmt = $conn->prepare($checkUsernameSql);
+    $checkUsernameStmt->bind_param("ss", $new_username, $original_name);
+    $checkUsernameStmt->execute();
+    $checkUsernameResult = $checkUsernameStmt->get_result();
+    $usernameCheck = $checkUsernameResult->fetch_assoc();
+
+    // Close the statements after fetching results
     $checkStmt->close();
+    $checkUsernameStmt->close();
 
     if ($emailCheck['email_count'] > 0) {
         return ['success' => false, 'message' => 'Email already in use by another user'];
     }
 
+    if ($usernameCheck['username_count'] > 0) {
+        return ['success' => false, 'message' => 'Username already in use by another user'];
+    }
+
     // Prepare SQL to update user
-    $sql = "UPDATE Users SET full_name = ?, email = ? WHERE full_name = ?";
+    $sql = "UPDATE Users SET full_name = ?, email = ?, username = ? WHERE full_name = ?";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
         return ['success' => false, 'message' => 'Prepare statement failed: ' . $conn->error];
     }
 
-    $stmt->bind_param("sss", $new_name, $new_email, $original_name);
+    $stmt->bind_param("ssss", $new_name, $new_email, $new_username, $original_name);
 
     try {
         $result = $stmt->execute();
@@ -122,8 +136,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $original_name = $_POST['original_nm'];
         $new_name = $_POST['nm'];
         $new_email = $_POST['Email'];
+        $new_username = $_POST['Username'];
 
-        $result = updateUserAccount($original_name, $new_name, $new_email);
+        $result = updateUserAccount($original_name, $new_name, $new_email, $new_username);
         echo json_encode($result);
         exit;
     }
@@ -157,6 +172,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     <input type="text" class="inputbox" placeholder="Search for user.." autocomplete="off" id="searchInput">
                     <ul id="dropdownList" class="dropdown-list"></ul>
 
+                    <label for="inputbox" id="Usernamelbl">Enter Username for Update</label>
+                    <input type="text" name="Username" class="inputbox" placeholder="Username" required> <br>
+
                     <label for="inputbox" id="namelbl">Enter Full Name for Update</label>
                     <input type="text" name="nm" class="inputbox" placeholder="Name" pattern="[A-Za-z\s]+" 
                            title="Only alphabets and spaces are allowed" required> <br>
@@ -165,11 +183,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     <input type="email" name="Email" class="inputbox" placeholder="abc@gmail.com"
                            title="Enter a valid email address" required> <br>
 
-                    <button name="UpdateAccountbtn" id="btn" type="submit"> Update Account </button>
+                    <input type="submit" value="Update" id="btn" class="btn">
                 </div>
             </form>
         </div>
     </div>
+
     <script src="UpdateAccount.js"></script>
 </body>
 </html>

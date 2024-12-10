@@ -5,6 +5,7 @@ const roleInputs = document.getElementsByName('role');
 const searchInput = document.querySelector('input[placeholder="Search for user.."]');
 const nameInput = document.querySelector('input[name="nm"]');
 const emailInput = document.querySelector('input[name="Email"]');
+const usernameInput = document.querySelector('input[name="Username"]'); // Username input
 const dropdownList = document.getElementById('dropdownList');
 const updateBtn = document.getElementById('btn');
 
@@ -12,6 +13,7 @@ function disableInputs(disabled) {
     searchInput.disabled = disabled;
     nameInput.disabled = disabled;
     emailInput.disabled = disabled;
+    usernameInput.disabled = disabled;
     updateBtn.disabled = disabled;
 }
 
@@ -82,6 +84,7 @@ function populateDropdown(users) {
 
             nameInput.value = user.full_name;
             emailInput.value = user.email;
+            usernameInput.value = user.username; // Set username value
             dropdownList.innerHTML = '';
 
             const existingOriginalInput = form.querySelector('input[name="original_nm"]');
@@ -109,7 +112,8 @@ form.addEventListener('submit', (event) => {
             action: 'update_account',
             original_nm: originalName,
             nm: nameInput.value,
-            Email: emailInput.value
+            Email: emailInput.value,
+            Username: usernameInput.value // Include username
         })
     })
     .then(response => response.json())

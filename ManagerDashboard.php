@@ -38,7 +38,6 @@ $conn->close();
             <button class="btn" type="button" onclick="redirectToDashboard()">Dashboard</button>
             <button class="btn" type="button" onclick="redirectToTaskList()">Task List</button>
             <button class="btn" type="button" onclick="redirectToTask()">Create New Task</button>
-            <button class="btn" type="button" onclick="redirectToSignup()">Create Account</button>
         </div>
     </div>
 
