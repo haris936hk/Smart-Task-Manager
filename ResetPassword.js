@@ -1,10 +1,12 @@
 // Get all form elements
-const form = document.getElementById('updateAccountForm');
+const form = document.getElementById('resetPasswordForm');
 const roleInputs = document.getElementsByName('role');
-const searchInput = document.querySelector('input[placeholder="Search for user.."]');
-const passwordInput = document.querySelector('input[name="Name"]');
-const confirmPasswordInput = document.querySelector('input[name="Email"]');
+const searchInput = document.getElementById('search');
+const passwordInput = document.querySelector('input[name="password"]');
+const confirmPasswordInput = document.querySelector('input[name="confirm_password"]');
 const showPasswordCheckbox = document.getElementById('check');
+const dropdownList = document.getElementById('dropdownList');
+const usernameDisplay = document.getElementById('usernameDisplay'); // Username display above password
 
 // Disable all input fields initially
 function disableInputs(disabled) {
@@ -36,10 +38,45 @@ function myFunction() {
     }
 }
 
+// Search users based on role and query
+function searchUsers() {
+    const role = document.querySelector('input[name="role"]:checked')?.value;
+    const query = searchInput.value.trim();
+
+    if (!role || query.length === 0) {
+        dropdownList.innerHTML = ''; // Clear the dropdown list if no role is selected or no input
+        return;
+    }
+
+    fetch(`ResetPassword.php?role=${role}&query=${query}`)
+        .then(response => response.json())
+        .then(data => {
+            dropdownList.innerHTML = '';
+            if (data.length > 0) {
+                data.forEach(user => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = user.username;
+                    listItem.onclick = () => selectUser(user.username);
+                    dropdownList.appendChild(listItem);
+                });
+            } else {
+                dropdownList.innerHTML = '<li>No users found</li>';
+            }
+        })
+        .catch(error => console.error('Error fetching user data:', error));
+}
+
+// Select a user from the dropdown
+function selectUser(username) {
+    searchInput.value = username;
+    dropdownList.innerHTML = ''; // Clear the dropdown after selection
+    usernameDisplay.value = username; // Show username above password input
+}
+
 // Password validation function
 function ValidationFun(event) {
-    event.preventDefault();
-    
+    event.preventDefault(); // Prevent form submission
+
     // Check if a role is selected
     let roleSelected = false;
     roleInputs.forEach(radio => {
@@ -64,9 +101,9 @@ function ValidationFun(event) {
 
     // Clear any previous validation messages if passwords match
     confirmPasswordInput.setCustomValidity("");
-    
-    // If everything is valid, you can submit the form here
-    // form.submit();  // Uncomment this line when ready to submit
+
+    console.log("Validation passed, submitting form."); // Debugging log
+    form.submit();  // Programmatically submit the form if validation passes
     return true;
 }
 

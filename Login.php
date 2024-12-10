@@ -2,14 +2,13 @@
 
 include('db_connection.php');
 
-
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Query to find the user
-    $sql = "SELECT * FROM Users WHERE username = ?";
+    // Query to find the user and check if the account is active
+    $sql = "SELECT * FROM Users WHERE username = ? AND is_active = TRUE";  // Added is_active check
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -17,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
+        
         // Verify password
         if (password_verify($password, $user['password_hash'])) {
             $_SESSION['user_id'] = $user['user_id'];
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = "Invalid password.";
         }
     } else {
-        $error = "No user found with the given username.";
+        $error = "No active user found with the given username.";
     }
 }
 ?>

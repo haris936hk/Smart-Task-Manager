@@ -1,7 +1,6 @@
 <?php
 include("db_connection.php");
 
-// Function to fetch users by role
 function fetchUsers($role)
 {
     global $servername, $username, $password, $dbname;
@@ -83,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
