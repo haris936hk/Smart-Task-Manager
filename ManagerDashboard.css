@@ -141,6 +141,10 @@ body
     padding-left: 10px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: larger;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 #total_box
@@ -152,6 +156,10 @@ body
     border-radius: 20px;
     margin-left: 615px;
     color: blue;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 #pending_box
@@ -163,6 +171,10 @@ body
     border-radius: 20px;
     margin-left: 568px;
     color: blue;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 #complete_box
@@ -174,6 +186,11 @@ body
     border-radius: 20px;
     margin-left: 550px;
     color: blue;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    font-weight: bold
+    ;
 }
 
 
