@@ -1,22 +1,41 @@
 <?php
+// Include the authentication file
+include('auth.php');
+
 // Include the database connection file
 include('db_connection.php');
 
-// Fetch task statistics
-$totalTasksQuery = "SELECT COUNT(*) AS total FROM Tasks";
-$pendingTasksQuery = "SELECT COUNT(*) AS inprogress FROM Tasks WHERE status = 'In Progress'";
-$completedTasksQuery = "SELECT COUNT(*) AS completed FROM Tasks WHERE status = 'Completed'";
+// Get the employee's ID from the session
+$employee_id = $_SESSION['user_id'];
 
-$totalTasksResult = $conn->query($totalTasksQuery);
-$pendingTasksResult = $conn->query($pendingTasksQuery);
-$completedTasksResult = $conn->query($completedTasksQuery);
+// Fetch task statistics for the logged-in employee
+$totalTasksQuery = "SELECT COUNT(*) AS total FROM Tasks WHERE assigned_to = ?";
+$pendingTasksQuery = "SELECT COUNT(*) AS inprogress FROM Tasks WHERE status = 'In Progress' AND assigned_to = ?";
+$completedTasksQuery = "SELECT COUNT(*) AS completed FROM Tasks WHERE status = 'Completed' AND assigned_to = ?";
 
-// Fetch the values from the results
+// Prepare and execute the total tasks query
+$stmt = $conn->prepare($totalTasksQuery);
+$stmt->bind_param("i", $employee_id);
+$stmt->execute();
+$totalTasksResult = $stmt->get_result();
 $totalTasks = $totalTasksResult->fetch_assoc()['total'];
+
+// Prepare and execute the pending tasks query
+$stmt = $conn->prepare($pendingTasksQuery);
+$stmt->bind_param("i", $employee_id);
+$stmt->execute();
+$pendingTasksResult = $stmt->get_result();
 $pendingTasks = $pendingTasksResult->fetch_assoc()['inprogress'];
+
+// Prepare and execute the completed tasks query
+$stmt = $conn->prepare($completedTasksQuery);
+$stmt->bind_param("i", $employee_id);
+$stmt->execute();
+$completedTasksResult = $stmt->get_result();
 $completedTasks = $completedTasksResult->fetch_assoc()['completed'];
 
-// Close the database connection
+// Close the statement and database connection
+$stmt->close();
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -26,10 +45,11 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="EmployeeDashboard.css">
-    <title>ManagerDashboard</title>
+    <title>Employee Dashboard</title>
 </head>
 
 <body>
+    <!-- Navigation Bar -->
     <div class="bar">
         <img class="logo" src="Logo.png" alt="Image not found!">
         <div class="inbar">
@@ -38,15 +58,16 @@ $conn->close();
         </div>
     </div>
 
+    <!-- Header -->
     <div class="Navbar">
         <h1 id="heading">Smart Task Manager</h1>
-        <button type="button" id="Logout">Log Out</button>
+        <button type="submit" id="Logout" onclick="redirectToLogin()">Log Out</button>
     </div>
 
+    <!-- Task Statistics Section -->
     <div id="stats">
         <h1 id="tsk_sts">Task Stats</h1>
         <div class="t_detail">
-
             <!-- Display Task Statistics -->
             <div class="t_count">
                 <h2>Total Tasks</h2>
@@ -62,9 +83,8 @@ $conn->close();
             </div>
         </div>
     </div>
+
     <script src="EmployeeDashboard.js"></script>
-
-
 </body>
 
 </html>
