@@ -1,5 +1,22 @@
 <?php
+session_start();
 
+// If the user is already logged in, redirect them to the appropriate dashboard
+if (isset($_SESSION['user_id'])) {
+    // Redirect based on the user's role
+    if ($_SESSION['role'] === 'Admin') {
+        header("Location: AdminDashboard.php");
+        exit();
+    } elseif ($_SESSION['role'] === 'Manager') {
+        header("Location: ManagerDashboard.php");
+        exit();
+    } elseif ($_SESSION['role'] === 'Employee') {
+        header("Location: EmployeeDashboard.php");
+        exit();
+    }
+}
+
+// Include the database connection
 include('db_connection.php');
 
 // Handle form submission

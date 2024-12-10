@@ -9,9 +9,23 @@ include('db_connection.php');
 $employee_id = $_SESSION['user_id'];
 
 // Fetch task statistics for the logged-in employee
-$totalTasksQuery = "SELECT COUNT(*) AS total FROM Tasks WHERE assigned_to = ?";
-$pendingTasksQuery = "SELECT COUNT(*) AS inprogress FROM Tasks WHERE status = 'In Progress' AND assigned_to = ?";
-$completedTasksQuery = "SELECT COUNT(*) AS completed FROM Tasks WHERE status = 'Completed' AND assigned_to = ?";
+$totalTasksQuery = "
+    SELECT COUNT(*) AS total 
+    FROM Tasks t
+    JOIN TaskTeamMembers ttm ON t.task_id = ttm.task_id
+    WHERE ttm.employee_id = ?";
+    
+$pendingTasksQuery = "
+    SELECT COUNT(*) AS inprogress 
+    FROM Tasks t
+    JOIN TaskTeamMembers ttm ON t.task_id = ttm.task_id
+    WHERE ttm.employee_id = ? AND t.status = 'In Progress'";
+
+$completedTasksQuery = "
+    SELECT COUNT(*) AS completed 
+    FROM Tasks t
+    JOIN TaskTeamMembers ttm ON t.task_id = ttm.task_id
+    WHERE ttm.employee_id = ? AND t.status = 'Completed'";
 
 // Prepare and execute the total tasks query
 $stmt = $conn->prepare($totalTasksQuery);
@@ -38,6 +52,7 @@ $completedTasks = $completedTasksResult->fetch_assoc()['completed'];
 $stmt->close();
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +76,8 @@ $conn->close();
     <!-- Header -->
     <div class="Navbar">
         <h1 id="heading">Smart Task Manager</h1>
-        <button type="submit" id="Logout" onclick="redirectToLogin()">Log Out</button>
+        <button type="submit" id="Logout" onclick="window.location.href='logout.php'">Log Out</button>
+
     </div>
 
     <!-- Task Statistics Section -->
